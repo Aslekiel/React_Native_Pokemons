@@ -11,6 +11,7 @@ import UserProfile from '../screens/UserProfile/UserProfile';
 const Tab = createBottomTabNavigator<BottomTabParamList>();
 
 const TabNavigation = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [auth, setAuth] = useState(false);
 
   return (

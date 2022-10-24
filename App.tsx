@@ -3,7 +3,7 @@ import {Provider} from 'react-redux';
 import {NavigationContainer} from '@react-navigation/native';
 
 import store from './src/store/store';
-import TabNavigation from './src/components/TabNavigation';
+import TabNavigation from './src/navigation/TabNavigation';
 
 const App = () => {
   return (

@@ -4,9 +4,9 @@ import {ScrollView, StyleSheet, SafeAreaView, View, Text} from 'react-native';
 
 import {pokemonApi} from '../../api/pokemonApi';
 import {SinglePokemonType} from '../../types';
-import PokemonAbilities from './Components/PokemonAbilities';
-import PokemonImages from './Components/PokemonImages';
-import PokemonStats from './Components/PokemonStats';
+import PokemonAbilities from './components/PokemonAbilities';
+import PokemonImages from './components/PokemonImages';
+import PokemonStats from './components/PokemonStats';
 
 type ParamList = {
   SinglePokemonPage: {

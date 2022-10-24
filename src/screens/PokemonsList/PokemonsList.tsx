@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import PokemonCard from './Components/PokemonCard';
+import PokemonCard from './components/PokemonCard';
 import {
   ListRenderItem,
   FlatList,
@@ -21,6 +21,7 @@ const renderItem: ListRenderItem<SinglePokemonType> = ({item}) => (
 const PokemonsList = () => {
   const [pokemonsList, setPokemonList] = useState<SinglePokemonType[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [isFirstLoading, setIsFirstLoading] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
   const dispatch = useAppDispatch();
@@ -38,6 +39,7 @@ const PokemonsList = () => {
           setPokemonList(prev => [...prev, res.data]);
         }
         setIsLoading(false);
+        setIsFirstLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -62,7 +64,11 @@ const PokemonsList = () => {
     ) : null;
   };
 
-  return (
+  return isFirstLoading ? (
+    <View style={styles.firstLoading}>
+      <ActivityIndicator size="large" color="rgba(175, 47, 47, 0.55)" />
+    </View>
+  ) : (
     <FlatList
       data={pokemonsList}
       numColumns={2}
@@ -83,6 +89,11 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-evenly',
     alignItems: 'center',
+  },
+  firstLoading: {
+    flex: 1,
+    justifyContent: 'center',
+    alignSelf: 'center',
   },
   loading: {
     paddingVertical: 20,

@@ -1,8 +1,8 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {StackParamsType} from '../types';
-import PokemonsList from './PokemonsList/PokemonsList';
-import SinglePokemonPage from './SinglePokemonPage/SinglePokemonPage';
+import PokemonsList from '../screens/PokemonsList/PokemonsList';
+import SinglePokemonPage from '../screens/SinglePokemonPage/SinglePokemonPage';
 
 const Stack = createNativeStackNavigator<StackParamsType>();
 

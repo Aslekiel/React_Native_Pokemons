@@ -3,8 +3,8 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {BottomTabParamList} from '../types';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import HomeScreen from './HomeScreen/HomeScreen';
-import UserProfile from './UserProfile/UserProfile';
+import HomeScreen from '../screens/HomeScreen/HomeScreen';
+import UserProfile from '../screens/UserProfile/UserProfile';
 import StackNavigation from './StackNavigation';
 
 const Tab = createBottomTabNavigator<BottomTabParamList>();

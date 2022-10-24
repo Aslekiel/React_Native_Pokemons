@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {BottomTabParamList} from '../types';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -6,10 +6,13 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import HomeScreen from '../screens/HomeScreen/HomeScreen';
 import PokemonsListNavigation from './PokemonsListNavigation';
 import UserProfileNavigation from './UserProfileNavigation';
+import UserProfile from '../screens/UserProfile/UserProfile';
 
 const Tab = createBottomTabNavigator<BottomTabParamList>();
 
 const TabNavigation = () => {
+  const [auth, setAuth] = useState(false);
+
   return (
     <Tab.Navigator>
       <Tab.Screen
@@ -42,7 +45,7 @@ const TabNavigation = () => {
       />
       <Tab.Screen
         name="Profile"
-        component={UserProfileNavigation}
+        component={auth ? UserProfile : UserProfileNavigation}
         options={{
           headerShown: false,
           tabBarIcon: () => (

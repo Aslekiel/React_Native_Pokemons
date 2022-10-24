@@ -81,7 +81,6 @@ export type BottomTabParamList = {
 export type StackParamsType = {
   PokemonsList: undefined;
   SinglePokemonPage: undefined;
-  UserProfile: undefined;
   Login: undefined;
   SignUp: undefined;
 };

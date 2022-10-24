@@ -1,8 +1,36 @@
-import React from 'react';
-import {Image, StyleSheet, SafeAreaView} from 'react-native';
-import {Text} from 'react-native-paper';
+import React, {useEffect, useState} from 'react';
+import {
+  View,
+  Button,
+  Text,
+  Image,
+  StyleSheet,
+  SafeAreaView,
+} from 'react-native';
+import {pokemonApi} from '../../api/pokemonApi';
+import {SinglePokemonType} from '../../types';
 
 const HomeScreen = () => {
+  const [pokemon, setPokemon] = useState<SinglePokemonType>();
+  const [pokemonId, setPokemonId] = useState<number>();
+
+  useEffect(() => {
+    (async () => {
+      try {
+        if (pokemonId) {
+          const res = await pokemonApi.getPokemonData(pokemonId);
+          setPokemon(res.data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, [pokemonId]);
+
+  const onPressRandom = () => {
+    setPokemonId(Math.floor(Math.random() * (905 - 1 + 1)) + 1);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <Image
@@ -17,6 +45,27 @@ const HomeScreen = () => {
         inhabit the Pokémon universe, with untold numbers waiting to be
         discovered!
       </Text>
+      {pokemon ? (
+        <View style={styles.pokemonWrapper}>
+          <Image
+            style={styles.pokemonImage}
+            source={{
+              uri: pokemon?.sprites.other['official-artwork'].front_default,
+            }}
+          />
+          <Text style={styles.pokemonName}>
+            {pokemon?.name[0].toLocaleUpperCase() + pokemon?.name.slice(1)}
+          </Text>
+        </View>
+      ) : (
+        <View style={styles.pokemonWrapper}>
+          <Image
+            style={styles.pokemonImage}
+            source={require('../../assets/pokeball.png')}
+          />
+        </View>
+      )}
+      <Button title="Random pokemon for me!" onPress={onPressRandom} />
     </SafeAreaView>
   );
 };
@@ -33,10 +82,34 @@ const styles = StyleSheet.create({
     maxHeight: '20%',
   },
   text: {
-    fontSize: 20,
+    fontSize: 14,
     color: 'black',
     textAlign: 'justify',
     textShadowColor: 'grey',
+  },
+  pokemonWrapper: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+
+    backgroundColor: '#E2E9E9',
+
+    borderColor: 'grey',
+    borderRadius: 20,
+    borderWidth: 2,
+
+    padding: 20,
+
+    marginVertical: 10,
+  },
+  pokemonImage: {
+    width: 120,
+    height: 120,
+  },
+  pokemonName: {
+    fontSize: 20,
+    color: 'black',
   },
 });
 

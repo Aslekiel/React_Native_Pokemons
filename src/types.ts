@@ -56,6 +56,23 @@ export type SpritesType = {
   front_female: string;
   front_shiny: string;
   front_shiny_female: string;
+  other: SpritesOtherType;
+};
+
+export type SpritesOtherType = {
+  dream_world: {
+    front_default: string;
+    front_female: string;
+  };
+  home: {
+    front_default: string;
+    front_female: string;
+    front_shiny: string;
+    front_shiny_female: string;
+  };
+  'official-artwork': {
+    front_default: string;
+  };
 };
 
 export type PaginationOptionsType = {

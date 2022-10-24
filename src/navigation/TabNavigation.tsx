@@ -4,8 +4,8 @@ import {BottomTabParamList} from '../types';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import HomeScreen from '../screens/HomeScreen/HomeScreen';
-import UserProfile from '../screens/UserProfile/UserProfile';
-import StackNavigation from './StackNavigation';
+import PokemonsListNavigation from './PokemonsListNavigation';
+import UserProfileNavigation from './UserProfileNavigation';
 
 const Tab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -28,7 +28,7 @@ const TabNavigation = () => {
       />
       <Tab.Screen
         name="Pokemons"
-        component={StackNavigation}
+        component={PokemonsListNavigation}
         options={{
           headerShown: false,
           tabBarIcon: () => (
@@ -42,7 +42,7 @@ const TabNavigation = () => {
       />
       <Tab.Screen
         name="Profile"
-        component={UserProfile}
+        component={UserProfileNavigation}
         options={{
           headerShown: false,
           tabBarIcon: () => (

@@ -75,13 +75,19 @@ export type BottomTabParamList = {
   Home: undefined;
   Pokemons: undefined;
   Profile: undefined;
+  Login: undefined;
 };
 
 export type StackParamsType = {
   PokemonsList: undefined;
   SinglePokemonPage: undefined;
+  UserProfile: undefined;
+  Login: undefined;
+  SignUp: undefined;
 };
 
 export type RootParamsType = {
   SinglePokemonPage: object;
+  Login: undefined;
+  SignUp: undefined;
 };

@@ -8,6 +8,7 @@ import {
   View,
   Text,
   Button,
+  ScrollView,
 } from 'react-native';
 import {RootParamsType} from '../../types';
 
@@ -15,24 +16,26 @@ const Login = () => {
   const navigation = useNavigation<NavigationProp<RootParamsType>>();
   return (
     <SafeAreaView style={styles.container}>
-      <Image
-        source={require('../../assets/pokemon-logo.png')}
-        style={styles.logo}
-      />
-      <View style={styles.inputsWrapper}>
-        <TextInput style={styles.input} placeholder="Username" />
-        <TextInput style={styles.input} placeholder="Password" />
-      </View>
-      <View style={styles.buttonsWrapper}>
-        <Button title="Forgot password" />
-        <View>
-          <Text style={styles.title}>Not registered yet?</Text>
-          <Button
-            title="Sign Up"
-            onPress={() => navigation.navigate('SignUp')}
-          />
+      <ScrollView style={styles.wrapper}>
+        <Image
+          source={require('../../assets/pokemon-logo.png')}
+          style={styles.logo}
+        />
+        <View style={styles.inputsWrapper}>
+          <TextInput style={styles.input} placeholder="Username" />
+          <TextInput style={styles.input} placeholder="Password" />
         </View>
-      </View>
+        <View style={styles.buttonsWrapper}>
+          <Button title="Submit" />
+          <View>
+            <Text style={styles.title}>Not registered yet?</Text>
+            <Button
+              title="Sign Up"
+              onPress={() => navigation.navigate('SignUp')}
+            />
+          </View>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -44,6 +47,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 10,
   },
+  wrapper: {
+    flex: 1,
+    width: '100%',
+  },
   inputsWrapper: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -51,8 +58,9 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   logo: {
-    width: '50%',
-    height: '20%',
+    alignSelf: 'center',
+    width: 150,
+    height: 80,
   },
   input: {
     fontSize: 20,
@@ -85,6 +93,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     alignSelf: 'center',
     color: 'black',
+    marginTop: 20,
     marginBottom: 10,
   },
 });

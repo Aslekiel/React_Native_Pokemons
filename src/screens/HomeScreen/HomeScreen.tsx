@@ -22,7 +22,7 @@ const HomeScreen = () => {
   }, [pokemonId]);
 
   const onPressRandom = () => {
-    setPokemonId(Math.floor(Math.random() * (905 - 1 + 1)) + 1);
+    setPokemonId(Math.floor(Math.random() * 905) + 1);
   };
 
   return (

@@ -7,6 +7,7 @@ const initialState: IUserType = {
     id: '',
     fullname: '',
     username: '',
+    avatar: '',
   },
   token: '',
 };

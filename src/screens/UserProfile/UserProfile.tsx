@@ -1,13 +1,14 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Text, View, Image} from 'react-native';
 import CustomButton from '../../components/Button';
 import {useAppDispatch, useAppSelector} from '../../store/hooks/hooks';
 import {setUser} from '../../store/user/user';
+import UserProfilesStyles from './UserProfile.styles';
 
 const UserProfile = () => {
   const {user} = useAppSelector(state => state.user);
-  console.log(user);
+
   const dispatch = useAppDispatch();
 
   const onPressQuit = async () => {
@@ -19,9 +20,19 @@ const UserProfile = () => {
     }
   };
   return (
-    <View>
-      <Text>Profile</Text>
-      <CustomButton title="Quit" onPress={onPressQuit} />
+    <View style={UserProfilesStyles.container}>
+      <View style={UserProfilesStyles.infoWrapper}>
+        <Text style={UserProfilesStyles.mainTitle}>My Profile</Text>
+        <Image
+          style={UserProfilesStyles.avatar}
+          source={require('../../assets/emptyAvatar.png')}
+        />
+        <Text style={UserProfilesStyles.username}>{user?.username}</Text>
+        {user?.fullname && <Text>{user?.fullname}</Text>}
+      </View>
+      <View style={UserProfilesStyles.buttonContainer}>
+        <CustomButton title="Quit" onPress={onPressQuit} />
+      </View>
     </View>
   );
 };

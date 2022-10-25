@@ -119,6 +119,7 @@ export type IUser = {
   id?: string;
   fullname?: string;
   username?: string;
+  avatar?: string;
 };
 
 export type CustomButtonType = {

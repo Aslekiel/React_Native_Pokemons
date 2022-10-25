@@ -1,13 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {
-  View,
-  Button,
-  Text,
-  Image,
-  StyleSheet,
-  SafeAreaView,
-} from 'react-native';
+import {View, Text, Image, StyleSheet, SafeAreaView} from 'react-native';
 import {pokemonApi} from '../../api/pokemonApi';
+import CustomButton from '../../components/Button';
 import {SinglePokemonType} from '../../types';
 
 const HomeScreen = () => {
@@ -65,7 +59,7 @@ const HomeScreen = () => {
           />
         </View>
       )}
-      <Button title="Random pokemon for me!" onPress={onPressRandom} />
+      <CustomButton title="Random pokemon for me!" onPress={onPressRandom} />
     </SafeAreaView>
   );
 };

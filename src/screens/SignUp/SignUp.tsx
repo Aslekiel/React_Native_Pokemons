@@ -9,12 +9,12 @@ import {
   TextInput,
   View,
   Text,
-  Button,
 } from 'react-native';
 import {RootParamsType} from '../../types';
 import {userApi} from '../../api/userApi';
 import {useAppDispatch} from '../../store/hooks/hooks';
 import {setUser} from '../../store/user/user';
+import CustomButton from '../../components/Button';
 
 const SignUp = () => {
   const [signUpState, setSignUpState] = useState({
@@ -94,9 +94,12 @@ const SignUp = () => {
           />
         </View>
         <View style={styles.buttonsWrapper}>
-          <Button title="Submit" onPress={onSubmit} />
+          <CustomButton title="Submit" onPress={onSubmit} />
           <Text style={styles.title}>Already registered?</Text>
-          <Button title="Log In" onPress={() => navigation.navigate('Login')} />
+          <CustomButton
+            title="Log In"
+            onPress={() => navigation.navigate('Login')}
+          />
         </View>
       </ScrollView>
     </SafeAreaView>

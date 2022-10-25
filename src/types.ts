@@ -1,3 +1,5 @@
+import {GestureResponderEvent} from 'react-native';
+
 export type PokemonsApiType = {
   pokemons: SinglePokemonType[];
   pagination: PaginationType;
@@ -117,4 +119,9 @@ export type IUser = {
   id?: string;
   fullname?: string;
   username?: string;
+};
+
+export type CustomButtonType = {
+  title: string;
+  onPress: ((event: GestureResponderEvent) => void) | undefined;
 };

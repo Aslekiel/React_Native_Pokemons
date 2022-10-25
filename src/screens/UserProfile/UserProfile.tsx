@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react';
-import {Button, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
+import CustomButton from '../../components/Button';
 import {useAppDispatch, useAppSelector} from '../../store/hooks/hooks';
 import {setUser} from '../../store/user/user';
 
@@ -20,7 +21,7 @@ const UserProfile = () => {
   return (
     <View>
       <Text>Profile</Text>
-      <Button title="Quit" onPress={onPressQuit} />
+      <CustomButton title="Quit" onPress={onPressQuit} />
     </View>
   );
 };

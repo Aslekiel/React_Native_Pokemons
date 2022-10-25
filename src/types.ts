@@ -107,3 +107,14 @@ export type RootParamsType = {
   Login: undefined;
   SignUp: undefined;
 };
+
+export type IUserType = {
+  user: IUser | null | undefined;
+  token: string | null | undefined;
+};
+
+export type IUser = {
+  id?: string;
+  fullname?: string;
+  username?: string;
+};

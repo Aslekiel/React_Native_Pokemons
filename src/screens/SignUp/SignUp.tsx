@@ -1,5 +1,6 @@
 import {NavigationProp, useNavigation} from '@react-navigation/native';
-import React from 'react';
+import React, {useState} from 'react';
+import Toast from 'react-native-toast-message';
 import {
   SafeAreaView,
   ScrollView,
@@ -11,9 +12,58 @@ import {
   Button,
 } from 'react-native';
 import {RootParamsType} from '../../types';
+import {userApi} from '../../api/userApi';
+import {useAppDispatch} from '../../store/hooks/hooks';
+import {setUser} from '../../store/user/user';
 
 const SignUp = () => {
+  const [signUpState, setSignUpState] = useState({
+    username: '',
+    password: '',
+    repeatedPassword: '',
+  });
+
   const navigation = useNavigation<NavigationProp<RootParamsType>>();
+
+  const dispatch = useAppDispatch();
+
+  const onChangeText = (key: string, value: string) => {
+    setSignUpState({...signUpState, [key]: value});
+  };
+
+  const onSubmit = async () => {
+    try {
+      if (
+        !signUpState.username.trim() ||
+        !signUpState.password.trim() ||
+        !signUpState.repeatedPassword.trim()
+      ) {
+        return Toast.show({
+          type: 'error',
+          text1: 'Not all registration fields are filled!',
+        });
+      }
+
+      if (signUpState.password !== signUpState.repeatedPassword) {
+        return Toast.show({
+          type: 'error',
+          text1: 'Passwords do not match!',
+        });
+      }
+
+      const res = await userApi.signUp(signUpState);
+      dispatch(setUser(res));
+
+      setSignUpState({
+        username: '',
+        password: '',
+        repeatedPassword: '',
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.wrapper}>
@@ -22,12 +72,29 @@ const SignUp = () => {
           style={styles.logo}
         />
         <View style={styles.inputsWrapper}>
-          <TextInput style={styles.input} placeholder="Username" />
-          <TextInput style={styles.input} placeholder="Password" />
-          <TextInput style={styles.input} placeholder="Repeat password" />
+          <TextInput
+            style={styles.input}
+            placeholder="Username"
+            value={signUpState.username}
+            onChangeText={value => onChangeText('username', value)}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Password"
+            secureTextEntry={true}
+            value={signUpState.password}
+            onChangeText={value => onChangeText('password', value)}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Repeat password"
+            secureTextEntry={true}
+            value={signUpState.repeatedPassword}
+            onChangeText={value => onChangeText('repeatedPassword', value)}
+          />
         </View>
         <View style={styles.buttonsWrapper}>
-          <Button title="Submit" />
+          <Button title="Submit" onPress={onSubmit} />
           <Text style={styles.title}>Already registered?</Text>
           <Button title="Log In" onPress={() => navigation.navigate('Login')} />
         </View>

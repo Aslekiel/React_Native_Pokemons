@@ -3,6 +3,7 @@ import {Provider} from 'react-redux';
 import {NavigationContainer} from '@react-navigation/native';
 
 import store from './src/store/store';
+import Toast from 'react-native-toast-message';
 import TabNavigation from './src/navigation/TabNavigation';
 
 const App = () => {
@@ -10,6 +11,7 @@ const App = () => {
     <Provider store={store}>
       <NavigationContainer>
         <TabNavigation />
+        <Toast />
       </NavigationContainer>
     </Provider>
   );

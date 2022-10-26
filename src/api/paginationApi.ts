@@ -1,5 +1,5 @@
 import type {AxiosResponse} from 'axios';
-import {instance} from '.';
+import instance from '.';
 import type {PaginationOptionsType, PaginationType} from '../types';
 
 const getPagination = async (

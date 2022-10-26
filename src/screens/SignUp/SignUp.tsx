@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 10,
+    margin: 15,
   },
   wrapper: {
     flex: 1,
@@ -156,6 +156,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   title: {
+    fontFamily: 'FuzzyBubbles-Regular',
     fontSize: 14,
     alignSelf: 'center',
     color: 'black',

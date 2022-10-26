@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react';
 import {Text, View, Image} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import CustomButton from '../../components/Button';
 import {useAppDispatch, useAppSelector} from '../../store/hooks/hooks';
 import {setUser} from '../../store/user/user';
@@ -20,7 +21,7 @@ const UserProfile = () => {
     }
   };
   return (
-    <View style={UserProfilesStyles.container}>
+    <SafeAreaView style={UserProfilesStyles.container}>
       <View style={UserProfilesStyles.infoWrapper}>
         <Text style={UserProfilesStyles.mainTitle}>My Profile</Text>
         <Image
@@ -33,7 +34,7 @@ const UserProfile = () => {
       <View style={UserProfilesStyles.buttonContainer}>
         <CustomButton title="Quit" onPress={onPressQuit} />
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

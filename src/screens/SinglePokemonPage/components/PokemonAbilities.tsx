@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   text: {
+    fontFamily: 'PTSans-Regular',
     fontSize: 20,
     color: 'black',
   },

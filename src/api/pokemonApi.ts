@@ -1,5 +1,6 @@
 import type {AxiosResponse} from 'axios';
-import {instance} from '.';
+import instance from '.';
+
 import type {SinglePokemonType} from '../types';
 
 const getPokemonData = async (

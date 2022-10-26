@@ -1,9 +1,15 @@
-import {RouteProp, useRoute} from '@react-navigation/native';
+import {
+  NavigationProp,
+  RouteProp,
+  useNavigation,
+  useRoute,
+} from '@react-navigation/native';
 import React, {useEffect, useMemo, useState} from 'react';
 import {ScrollView, StyleSheet, SafeAreaView, View, Text} from 'react-native';
 
 import {pokemonApi} from '../../api/pokemonApi';
-import {SinglePokemonType} from '../../types';
+import CustomButton from '../../components/Button';
+import {RootParamsType, SinglePokemonType} from '../../types';
 import PokemonAbilities from './components/PokemonAbilities';
 import PokemonImages from './components/PokemonImages';
 import PokemonStats from './components/PokemonStats';
@@ -18,6 +24,7 @@ const SinglePokemonPage = () => {
   const [pokemonData, setPokemonData] = useState<SinglePokemonType>();
   const route = useRoute<RouteProp<ParamList, 'SinglePokemonPage'>>();
 
+  const navigation = useNavigation<NavigationProp<RootParamsType>>();
   const {id} = route.params;
 
   const pokemonName = useMemo(() => {
@@ -70,6 +77,16 @@ const SinglePokemonPage = () => {
         {pokemonData?.abilities && (
           <PokemonAbilities abilities={pokemonData?.abilities} />
         )}
+        <View style={styles.buttonWrapper}>
+          <CustomButton
+            title="More Pokemon Images"
+            onPress={() => {
+              navigation.navigate('PokemonImages', {
+                images: pokemonData?.sprites,
+              });
+            }}
+          />
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -115,6 +132,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   infoText: {
+    fontFamily: 'PTSans-Regular',
     fontSize: 20,
     color: 'black',
   },
@@ -123,8 +141,14 @@ const styles = StyleSheet.create({
     height: 100,
   },
   text: {
+    fontFamily: 'PTSans-Regular',
     fontSize: 20,
     color: 'black',
+    alignSelf: 'center',
+  },
+  buttonWrapper: {
+    width: 200,
+    paddingVertical: 10,
     alignSelf: 'center',
   },
 });

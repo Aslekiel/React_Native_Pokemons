@@ -3,6 +3,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {StackParamsType} from '../types';
 import PokemonsList from '../screens/PokemonsList/PokemonsList';
 import SinglePokemonPage from '../screens/SinglePokemonPage/SinglePokemonPage';
+import AllPokemonImages from '../screens/AllPokemonImages/AllPokemonImages';
 
 const Stack = createNativeStackNavigator<StackParamsType>();
 
@@ -19,6 +20,11 @@ const PokemonsListNavigation = () => {
           name="SinglePokemonPage"
           component={SinglePokemonPage}
           options={{title: 'Pokemon Info'}}
+        />
+        <Stack.Screen
+          name="PokemonImages"
+          component={AllPokemonImages}
+          options={{title: 'Pokemon Images'}}
         />
       </Stack.Group>
     </Stack.Navigator>

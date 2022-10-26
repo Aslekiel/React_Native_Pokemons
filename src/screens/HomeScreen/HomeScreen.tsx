@@ -69,25 +69,28 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    padding: 10,
+    margin: 15,
   },
   logo: {
-    maxWidth: '50%',
-    maxHeight: '20%',
+    maxWidth: 150,
+    maxHeight: 80,
   },
   text: {
-    fontSize: 14,
+    fontFamily: 'FuzzyBubbles-Regular',
+    fontSize: 15,
     color: 'black',
     textAlign: 'justify',
     textShadowColor: 'grey',
   },
   pokemonWrapper: {
-    flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
 
     backgroundColor: '#E2E9E9',
+
+    width: 200,
+    height: 200,
 
     borderColor: 'grey',
     borderRadius: 20,
@@ -102,6 +105,7 @@ const styles = StyleSheet.create({
     height: 120,
   },
   pokemonName: {
+    fontFamily: 'PTSans-Regular',
     fontSize: 20,
     color: 'black',
   },

@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
   text: {
+    fontFamily: 'PTSans-Regular',
     fontSize: 20,
     color: 'black',
   },

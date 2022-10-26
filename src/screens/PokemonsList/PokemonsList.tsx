@@ -6,10 +6,9 @@ import {
   StyleSheet,
   View,
   ActivityIndicator,
+  SafeAreaView,
 } from 'react-native';
 import type {SinglePokemonType} from '../../types';
-import {useAppDispatch} from '../../store/hooks/hooks';
-import {setPokemons} from '../../store/pokemons/pokemons';
 import {pokemonApi} from '../../api/pokemonApi';
 
 const limit = 8;
@@ -23,8 +22,6 @@ const PokemonsList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isFirstLoading, setIsFirstLoading] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-
-  const dispatch = useAppDispatch();
 
   useEffect(() => {
     (async () => {
@@ -46,12 +43,6 @@ const PokemonsList = () => {
     })();
   }, [currentPage]);
 
-  useEffect(() => {
-    if (pokemonsList.length / currentPage === 8) {
-      dispatch(setPokemons(pokemonsList));
-    }
-  }, [currentPage, dispatch, pokemonsList]);
-
   const loadMorePokemons = () => {
     setCurrentPage(currentPage + 1);
   };
@@ -69,17 +60,19 @@ const PokemonsList = () => {
       <ActivityIndicator size="large" color="rgba(175, 47, 47, 0.55)" />
     </View>
   ) : (
-    <FlatList
-      data={pokemonsList}
-      numColumns={2}
-      renderItem={renderItem}
-      keyExtractor={item => item.name}
-      contentContainerStyle={styles.container}
-      refreshing={isLoading}
-      onEndReached={loadMorePokemons}
-      onEndReachedThreshold={0.2}
-      ListFooterComponent={renderLoader}
-    />
+    <SafeAreaView>
+      <FlatList
+        data={pokemonsList}
+        numColumns={2}
+        renderItem={renderItem}
+        keyExtractor={item => item.name}
+        contentContainerStyle={styles.container}
+        refreshing={isLoading}
+        onEndReached={loadMorePokemons}
+        onEndReachedThreshold={0.2}
+        ListFooterComponent={renderLoader}
+      />
+    </SafeAreaView>
   );
 };
 

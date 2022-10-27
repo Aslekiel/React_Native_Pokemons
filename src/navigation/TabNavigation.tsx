@@ -37,7 +37,11 @@ const TabNavigation = () => {
     })();
   }, [dispatch, token]);
 
-  return isSignedIn ? (
+  if (!isSignedIn) {
+    return <UserProfileNavigation />;
+  }
+
+  return (
     <Tab.Navigator>
       <Tab.Screen
         name="Home"
@@ -82,8 +86,6 @@ const TabNavigation = () => {
         }}
       />
     </Tab.Navigator>
-  ) : (
-    <UserProfileNavigation />
   );
 };
 

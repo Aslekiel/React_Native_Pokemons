@@ -7,7 +7,7 @@ import LogIn from '../screens/LogIn/LogIn';
 
 const Stack = createNativeStackNavigator<StackParamsType>();
 
-const UserProfileNavigation = () => {
+const LogInSignUpNavigation = () => {
   return (
     <Stack.Navigator>
       <Stack.Group>
@@ -26,4 +26,4 @@ const UserProfileNavigation = () => {
   );
 };
 
-export default UserProfileNavigation;
+export default LogInSignUpNavigation;

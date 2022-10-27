@@ -1,13 +1,34 @@
-import React from 'react';
+import React, {useLayoutEffect} from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {StackParamsType} from '../types';
 import PokemonsList from '../screens/PokemonsList/PokemonsList';
 import SinglePokemonPage from '../screens/SinglePokemonPage/SinglePokemonPage';
 import AllPokemonImages from '../screens/AllPokemonImages/AllPokemonImages';
+import {
+  getFocusedRouteNameFromRoute,
+  useNavigation,
+  useRoute,
+} from '@react-navigation/native';
 
 const Stack = createNativeStackNavigator<StackParamsType>();
 
 const PokemonsListNavigation = () => {
+  const navigation = useNavigation();
+  const route = useRoute();
+
+  useLayoutEffect(() => {
+    const tabHiddenRoutes = ['SinglePokemonPage', 'PokemonImages'];
+    const routeName = getFocusedRouteNameFromRoute(route);
+
+    if (routeName) {
+      if (tabHiddenRoutes.includes(routeName)) {
+        navigation.setOptions({tabBarStyle: {display: 'none'}});
+      } else {
+        navigation.setOptions({tabBarStyle: {display: 'flex'}});
+      }
+    }
+  }, [navigation, route]);
+
   return (
     <Stack.Navigator>
       <Stack.Group>

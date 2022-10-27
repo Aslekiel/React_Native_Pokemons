@@ -1,15 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {BottomTabParamList} from '../types';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import HomeScreen from '../screens/HomeScreen/HomeScreen';
 import PokemonsListNavigation from './PokemonsListNavigation';
-import UserProfileNavigation from './UserProfileNavigation';
+import LogInSignUpNavigation from './LogInSignUpNavigation';
 import UserProfile from '../screens/UserProfile/UserProfile';
 import {useAppDispatch, useAppSelector} from '../store/hooks/hooks';
 import {userApi} from '../api/userApi';
 import {setUser} from '../store/user/user';
+
+import ProfileIcon from '../assets/pokemon_trainer.svg';
+import PokeballIcon from '../assets/pokeball_icon.svg';
+import HomeIcon from '../assets/home.svg';
 
 const Tab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -38,7 +41,7 @@ const TabNavigation = () => {
   }, [dispatch, token]);
 
   if (!isSignedIn) {
-    return <UserProfileNavigation />;
+    return <LogInSignUpNavigation />;
   }
 
   return (
@@ -48,13 +51,7 @@ const TabNavigation = () => {
         component={HomeScreen}
         options={{
           headerShown: false,
-          tabBarIcon: () => (
-            <MaterialCommunityIcons
-              name="home"
-              color="rgba(175, 47, 47, 0.55)"
-              size={26}
-            />
-          ),
+          tabBarIcon: () => <HomeIcon width={24} height={24} />,
         }}
       />
       <Tab.Screen
@@ -62,13 +59,7 @@ const TabNavigation = () => {
         component={PokemonsListNavigation}
         options={{
           headerShown: false,
-          tabBarIcon: () => (
-            <MaterialCommunityIcons
-              name="pokeball"
-              color="rgba(175, 47, 47, 0.55)"
-              size={26}
-            />
-          ),
+          tabBarIcon: () => <PokeballIcon width={24} height={24} />,
         }}
       />
       <Tab.Screen
@@ -76,13 +67,7 @@ const TabNavigation = () => {
         component={UserProfile}
         options={{
           headerShown: false,
-          tabBarIcon: () => (
-            <MaterialCommunityIcons
-              name="account-circle"
-              color="rgba(175, 47, 47, 0.55)"
-              size={26}
-            />
-          ),
+          tabBarIcon: () => <ProfileIcon width={24} height={24} />,
         }}
       />
     </Tab.Navigator>

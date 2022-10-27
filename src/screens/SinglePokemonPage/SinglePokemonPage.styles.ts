@@ -39,19 +39,11 @@ const SinglePokemonPageStyles = StyleSheet.create({
 
     padding: 10,
   },
-  infoText: {
-    fontFamily: 'PTSans-Regular',
-    fontSize: 20,
-    color: 'black',
-  },
   logo: {
     width: 100,
     height: 100,
   },
   text: {
-    fontFamily: 'PTSans-Regular',
-    fontSize: 20,
-    color: 'black',
     alignSelf: 'center',
   },
   buttonWrapper: {

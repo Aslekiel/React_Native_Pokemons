@@ -13,9 +13,7 @@ const UserProfilesStyles = StyleSheet.create({
     alignItems: 'center',
   },
   mainTitle: {
-    fontFamily: 'PTSans-Regular',
     fontSize: 30,
-    color: 'black',
     marginVertical: 10,
   },
   avatar: {
@@ -24,9 +22,6 @@ const UserProfilesStyles = StyleSheet.create({
     borderRadius: 20,
   },
   username: {
-    fontFamily: 'PTSans-Regular',
-    fontSize: 20,
-    color: 'black',
     marginVertical: 10,
   },
   buttonContainer: {

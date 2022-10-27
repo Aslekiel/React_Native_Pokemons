@@ -17,11 +17,6 @@ const PokemonAbilitiesStyles = StyleSheet.create({
     marginVertical: 5,
     padding: 10,
   },
-  text: {
-    fontFamily: 'PTSans-Regular',
-    fontSize: 20,
-    color: 'black',
-  },
 });
 
 export default PokemonAbilitiesStyles;

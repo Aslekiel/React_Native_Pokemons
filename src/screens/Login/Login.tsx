@@ -1,7 +1,7 @@
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
 import Toast from 'react-native-toast-message';
-import {SafeAreaView, Image, View, Text, ScrollView} from 'react-native';
+import {SafeAreaView, Image, View, ScrollView} from 'react-native';
 import {useAppDispatch} from '../../store/hooks/hooks';
 import {RootParamsType} from '../../types';
 import {userApi} from '../../api/userApi';
@@ -9,6 +9,7 @@ import {setUser} from '../../store/user/user';
 import CustomButton from '../../components/CustomButton/CustomButton';
 import LogInStyles from './LogIn.styles';
 import CustomInput from '../../components/CustomInput/CustomInput';
+import CustomText from '../../components/CustomText/CustomText';
 
 const LogIn = () => {
   const [logInState, setLogInState] = useState({
@@ -68,7 +69,9 @@ const LogIn = () => {
         <View style={LogInStyles.buttonsWrapper}>
           <CustomButton title="Submit" onPress={onSubmit} />
           <View>
-            <Text style={LogInStyles.title}>Not registered yet?</Text>
+            <CustomText style={LogInStyles.title}>
+              Not registered yet?
+            </CustomText>
             <CustomButton
               title="Sign Up"
               onPress={() => navigation.navigate('SignUp')}

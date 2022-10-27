@@ -23,9 +23,7 @@ const PokemonCardStyles = StyleSheet.create({
     height: 100,
   },
   text: {
-    fontFamily: 'PTSans-Regular',
     fontSize: 12,
-    color: 'black',
   },
 });
 

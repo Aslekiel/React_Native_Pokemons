@@ -1,7 +1,8 @@
 import {RouteProp, useRoute} from '@react-navigation/native';
 import React from 'react';
-import {Image, SafeAreaView, Text, View, ScrollView} from 'react-native';
+import {Image, SafeAreaView, View, ScrollView} from 'react-native';
 import {SvgUri} from 'react-native-svg';
+import CustomText from '../../components/CustomText/CustomText';
 import {SpritesType} from '../../types';
 import AllPokemonImagesStyles from './AllPokemonImages.styles';
 
@@ -21,7 +22,7 @@ const AllPokemonImages = () => {
       <ScrollView>
         <View style={AllPokemonImagesStyles.imagesContainer}>
           <View style={AllPokemonImagesStyles.imageWrapper}>
-            <Text style={AllPokemonImagesStyles.text}>Dream World</Text>
+            <CustomText>Dream World</CustomText>
             <SvgUri
               width="110"
               height="110"
@@ -29,7 +30,7 @@ const AllPokemonImages = () => {
             />
           </View>
           <View style={AllPokemonImagesStyles.imageWrapper}>
-            <Text style={AllPokemonImagesStyles.text}>Artwork</Text>
+            <CustomText>Artwork</CustomText>
             <Image
               style={AllPokemonImagesStyles.image}
               source={{uri: images.other['official-artwork'].front_default}}
@@ -38,14 +39,14 @@ const AllPokemonImages = () => {
         </View>
         <View style={AllPokemonImagesStyles.imagesContainer}>
           <View style={AllPokemonImagesStyles.imageWrapper}>
-            <Text style={AllPokemonImagesStyles.text}>3D Adult</Text>
+            <CustomText>3D Adult</CustomText>
             <Image
               style={AllPokemonImagesStyles.image}
               source={{uri: images.other.home.front_default}}
             />
           </View>
           <View style={AllPokemonImagesStyles.imageWrapper}>
-            <Text style={AllPokemonImagesStyles.text}>3D Tiny</Text>
+            <CustomText>3D Tiny</CustomText>
             <Image
               style={AllPokemonImagesStyles.image}
               source={{uri: images.other.home.front_shiny}}

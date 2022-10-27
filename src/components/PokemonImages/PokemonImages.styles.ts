@@ -17,11 +17,6 @@ const PokemonImagesStyles = StyleSheet.create({
     width: 100,
     height: 100,
   },
-  text: {
-    fontFamily: 'PTSans-Regular',
-    fontSize: 20,
-    color: 'black',
-  },
 });
 
 export default PokemonImagesStyles;

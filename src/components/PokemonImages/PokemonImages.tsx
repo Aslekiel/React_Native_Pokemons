@@ -1,5 +1,6 @@
 import React from 'react';
-import {Image, Text, View} from 'react-native';
+import {Image, View} from 'react-native';
+import CustomText from '../CustomText/CustomText';
 import PokemonImagesStyles from './PokemonImages.styles';
 
 type Props = {
@@ -11,7 +12,7 @@ type Props = {
 const PokemonImages: React.FC<Props> = props => {
   return (
     <View style={PokemonImagesStyles.wrapper}>
-      <Text style={PokemonImagesStyles.text}>{props.title}</Text>
+      <CustomText>{props.title}</CustomText>
       <View style={PokemonImagesStyles.imageContainer}>
         <Image
           source={{uri: props.frontImage}}

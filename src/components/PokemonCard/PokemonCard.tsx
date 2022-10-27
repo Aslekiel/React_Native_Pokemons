@@ -3,12 +3,12 @@ import React, {memo, useEffect, useMemo, useState} from 'react';
 import {
   Image,
   SafeAreaView,
-  Text,
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
 import {pokemonApi} from '../../api/pokemonApi';
 import {RootParamsType, SinglePokemonType} from '../../types';
+import CustomText from '../CustomText/CustomText';
 import PokemonCardStyles from './PokemonCard.styles';
 
 type PropsType = {
@@ -55,17 +55,20 @@ const PokemonCard: React.FC<PropsType> = ({id}) => {
             style={PokemonCardStyles.logo}
           />
           <View>
-            <Text style={PokemonCardStyles.text}>{`Name: ${pokemonName}`}</Text>
-            <Text
+            <CustomText
               style={
                 PokemonCardStyles.text
-              }>{`Weight: ${pokemonData?.weight}`}</Text>
-            <Text style={PokemonCardStyles.text}>
+              }>{`Name: ${pokemonName}`}</CustomText>
+            <CustomText
+              style={
+                PokemonCardStyles.text
+              }>{`Weight: ${pokemonData?.weight}`}</CustomText>
+            <CustomText style={PokemonCardStyles.text}>
               {`Height: ${pokemonData?.height}`}
-            </Text>
-            <Text style={PokemonCardStyles.text}>
+            </CustomText>
+            <CustomText style={PokemonCardStyles.text}>
               {`Base experience: ${pokemonData?.base_experience}`}
-            </Text>
+            </CustomText>
           </View>
         </View>
       </TouchableWithoutFeedback>

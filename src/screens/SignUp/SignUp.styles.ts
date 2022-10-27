@@ -38,7 +38,6 @@ const SignUpStyles = StyleSheet.create({
     fontFamily: 'FuzzyBubbles-Regular',
     fontSize: 14,
     alignSelf: 'center',
-    color: 'black',
     marginTop: 20,
     marginBottom: 10,
   },

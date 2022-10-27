@@ -5,7 +5,7 @@ import {
   useRoute,
 } from '@react-navigation/native';
 import React, {useEffect, useMemo, useState} from 'react';
-import {ScrollView, SafeAreaView, View, Text} from 'react-native';
+import {ScrollView, SafeAreaView, View} from 'react-native';
 
 import {pokemonApi} from '../../api/pokemonApi';
 import CustomButton from '../../components/CustomButton/CustomButton';
@@ -14,6 +14,7 @@ import PokemonAbilities from '../../components/PokemonAbilities/PokemonAbilities
 import PokemonImages from '../../components/PokemonImages/PokemonImages';
 import PokemonStats from '../../components/PokemonStats/PokemonStats';
 import SinglePokemonPageStyles from './SinglePokemonPage.styles';
+import CustomText from '../../components/CustomText/CustomText';
 
 type ParamList = {
   SinglePokemonPage: {
@@ -63,25 +64,16 @@ const SinglePokemonPage = () => {
           />
         </View>
         <View style={SinglePokemonPageStyles.info}>
-          <Text
-            style={
-              SinglePokemonPageStyles.infoText
-            }>{`Name: ${pokemonName}`}</Text>
-          <Text
-            style={
-              SinglePokemonPageStyles.infoText
-            }>{`Weight: ${pokemonData?.weight}`}</Text>
-          <Text
-            style={
-              SinglePokemonPageStyles.infoText
-            }>{`Height: ${pokemonData?.height}`}</Text>
-          <Text style={SinglePokemonPageStyles.infoText}>
+          <CustomText>{`Name: ${pokemonName}`}</CustomText>
+          <CustomText>{`Weight: ${pokemonData?.weight}`}</CustomText>
+          <CustomText>{`Height: ${pokemonData?.height}`}</CustomText>
+          <CustomText>
             {`Base experience: ${pokemonData?.base_experience}`}
-          </Text>
+          </CustomText>
         </View>
-        <Text style={SinglePokemonPageStyles.text}>Stats</Text>
+        <CustomText style={SinglePokemonPageStyles.text}>Stats</CustomText>
         {pokemonData?.stats && <PokemonStats stats={pokemonData.stats} />}
-        <Text style={SinglePokemonPageStyles.text}>Abilities</Text>
+        <CustomText style={SinglePokemonPageStyles.text}>Abilities</CustomText>
         {pokemonData?.abilities && (
           <PokemonAbilities abilities={pokemonData?.abilities} />
         )}

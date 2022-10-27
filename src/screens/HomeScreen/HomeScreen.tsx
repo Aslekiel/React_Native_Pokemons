@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, Image, SafeAreaView, ScrollView} from 'react-native';
+import {View, Image, SafeAreaView, ScrollView} from 'react-native';
 import {pokemonApi} from '../../api/pokemonApi';
 import CustomButton from '../../components/CustomButton/CustomButton';
+import CustomText from '../../components/CustomText/CustomText';
 import {SinglePokemonType} from '../../types';
 import HomeScreenStyles from './HomeScreen.styles';
 
@@ -33,14 +34,14 @@ const HomeScreen = () => {
           source={require('../../assets/pokemon-logo.png')}
           style={HomeScreenStyles.logo}
         />
-        <Text style={HomeScreenStyles.text}>
+        <CustomText style={HomeScreenStyles.text}>
           Pokémon are creatures of all shapes and sizes who live in the wild or
           alongside their human partners (called “Trainers”). During their
           adventures, Pokémon grow and become more experienced and even, on
           occasion, evolve into stronger Pokémon. Hundreds of known Pokémon
           inhabit the Pokémon universe, with untold numbers waiting to be
           discovered!
-        </Text>
+        </CustomText>
         {pokemon ? (
           <View style={HomeScreenStyles.pokemonWrapper}>
             <Image
@@ -49,9 +50,9 @@ const HomeScreen = () => {
                 uri: pokemon?.sprites.other['official-artwork'].front_default,
               }}
             />
-            <Text style={HomeScreenStyles.pokemonName}>
+            <CustomText>
               {pokemon?.name[0].toLocaleUpperCase() + pokemon?.name.slice(1)}
-            </Text>
+            </CustomText>
           </View>
         ) : (
           <View style={HomeScreenStyles.pokemonWrapper}>

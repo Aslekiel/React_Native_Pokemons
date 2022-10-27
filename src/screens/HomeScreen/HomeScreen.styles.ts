@@ -19,7 +19,6 @@ const HomeScreenStyles = StyleSheet.create({
   text: {
     fontFamily: 'FuzzyBubbles-Regular',
     fontSize: 15,
-    color: 'black',
     textAlign: 'justify',
     textShadowColor: 'grey',
   },
@@ -44,11 +43,6 @@ const HomeScreenStyles = StyleSheet.create({
   pokemonImage: {
     width: 120,
     height: 120,
-  },
-  pokemonName: {
-    fontFamily: 'PTSans-Regular',
-    fontSize: 20,
-    color: 'black',
   },
 });
 

@@ -17,11 +17,6 @@ const PokemonStatsStyles = StyleSheet.create({
     marginHorizontal: 20,
     marginVertical: 5,
   },
-  text: {
-    fontFamily: 'PTSans-Regular',
-    fontSize: 20,
-    color: 'black',
-  },
 });
 
 export default PokemonStatsStyles;

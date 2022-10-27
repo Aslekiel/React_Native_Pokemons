@@ -1,8 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react';
-import {Text, View, Image} from 'react-native';
+import {View, Image} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import CustomButton from '../../components/CustomButton/CustomButton';
+import CustomText from '../../components/CustomText/CustomText';
 import {useAppDispatch, useAppSelector} from '../../store/hooks/hooks';
 import {setUser} from '../../store/user/user';
 import UserProfilesStyles from './UserProfile.styles';
@@ -23,13 +24,19 @@ const UserProfile = () => {
   return (
     <SafeAreaView style={UserProfilesStyles.container}>
       <View style={UserProfilesStyles.infoWrapper}>
-        <Text style={UserProfilesStyles.mainTitle}>My Profile</Text>
+        <CustomText style={UserProfilesStyles.mainTitle}>My Profile</CustomText>
         <Image
           style={UserProfilesStyles.avatar}
           source={require('../../assets/emptyAvatar.png')}
         />
-        <Text style={UserProfilesStyles.username}>{user?.username}</Text>
-        {user?.fullname && <Text>{user?.fullname}</Text>}
+        <CustomText style={UserProfilesStyles.username}>
+          {user?.username}
+        </CustomText>
+        {user?.fullname && (
+          <CustomText style={UserProfilesStyles.username}>
+            {user?.fullname}
+          </CustomText>
+        )}
       </View>
       <View style={UserProfilesStyles.buttonContainer}>
         <CustomButton title="Quit" onPress={onPressQuit} />

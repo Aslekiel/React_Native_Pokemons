@@ -1,6 +1,7 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 import {AbilitiesType} from '../../types';
+import CustomText from '../CustomText/CustomText';
 import PokemonAbilitiesStyles from './PokemonAbilities.styles';
 
 type PropsType = {
@@ -12,12 +13,12 @@ const PokemonAbilities: React.FC<PropsType> = ({abilities}) => {
     <View style={PokemonAbilitiesStyles.wrapper}>
       {abilities.map((ability, index) => {
         return (
-          <Text key={index} style={PokemonAbilitiesStyles.text}>
+          <CustomText key={index}>
             {`Slot ${ability.slot}: ${
               ability.ability.name[0].toLocaleUpperCase() +
               ability.ability.name.slice(1)
             }`}
-          </Text>
+          </CustomText>
         );
       })}
     </View>

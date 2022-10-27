@@ -26,11 +26,6 @@ const AllPokemonImagesStyles = StyleSheet.create({
     width: 110,
     height: 110,
   },
-  text: {
-    fontFamily: 'PTSans-Regular',
-    fontSize: 20,
-    color: 'black',
-  },
 });
 
 export default AllPokemonImagesStyles;

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, TouchableOpacity} from 'react-native';
-import {CustomButtonType} from '../types';
-import ButtonStyles from './Button.styles';
+import {CustomButtonType} from '../../types';
+import ButtonStyles from './CustomButton.styles';
 
 const CustomButton: React.FC<CustomButtonType> = props => {
   return (

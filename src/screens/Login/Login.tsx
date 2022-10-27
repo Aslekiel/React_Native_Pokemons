@@ -4,7 +4,6 @@ import Toast from 'react-native-toast-message';
 import {
   SafeAreaView,
   Image,
-  StyleSheet,
   TextInput,
   View,
   Text,
@@ -14,9 +13,10 @@ import {useAppDispatch} from '../../store/hooks/hooks';
 import {RootParamsType} from '../../types';
 import {userApi} from '../../api/userApi';
 import {setUser} from '../../store/user/user';
-import CustomButton from '../../components/Button';
+import CustomButton from '../../components/CustomButton/CustomButton';
+import LogInStyles from './LogIn.styles';
 
-const Login = () => {
+const LogIn = () => {
   const [logInState, setLogInState] = useState({
     username: '',
     password: '',
@@ -52,31 +52,31 @@ const Login = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.wrapper}>
+    <SafeAreaView style={LogInStyles.container}>
+      <ScrollView style={LogInStyles.wrapper}>
         <Image
           source={require('../../assets/pokemon-logo.png')}
-          style={styles.logo}
+          style={LogInStyles.logo}
         />
-        <View style={styles.inputsWrapper}>
+        <View style={LogInStyles.inputsWrapper}>
           <TextInput
-            style={styles.input}
+            style={LogInStyles.input}
             placeholder="Username"
             value={logInState.username}
             onChangeText={value => onChangeText('username', value)}
           />
           <TextInput
-            style={styles.input}
+            style={LogInStyles.input}
             placeholder="Password"
             secureTextEntry={true}
             value={logInState.password}
             onChangeText={value => onChangeText('password', value)}
           />
         </View>
-        <View style={styles.buttonsWrapper}>
+        <View style={LogInStyles.buttonsWrapper}>
           <CustomButton title="Submit" onPress={onSubmit} />
           <View>
-            <Text style={styles.title}>Not registered yet?</Text>
+            <Text style={LogInStyles.title}>Not registered yet?</Text>
             <CustomButton
               title="Sign Up"
               onPress={() => navigation.navigate('SignUp')}
@@ -88,63 +88,4 @@ const Login = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    margin: 15,
-  },
-  wrapper: {
-    flex: 1,
-    width: '100%',
-  },
-  inputsWrapper: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
-    marginVertical: 20,
-  },
-  logo: {
-    alignSelf: 'center',
-    width: 150,
-    height: 80,
-  },
-  input: {
-    fontSize: 20,
-    color: 'black',
-    width: '100%',
-
-    marginVertical: 5,
-    padding: 20,
-
-    borderWidth: 2,
-    borderColor: 'rgba(175, 47, 47, 0.15)',
-    borderRadius: 20,
-
-    backgroundColor: 'rgba(0, 0, 0, 0.003)',
-    shadowColor: 'inset 0 -2px 1px rgba(0, 0, 0, 0.03)',
-  },
-  buttonsWrapper: {
-    flex: 1,
-    justifyContent: 'space-between',
-  },
-  button: {
-    padding: 10,
-    borderColor: 'grey',
-    borderWidth: 2,
-    alignSelf: 'flex-end',
-    marginTop: 10,
-    marginRight: 10,
-  },
-  title: {
-    fontFamily: 'FuzzyBubbles-Regular',
-    fontSize: 14,
-    alignSelf: 'center',
-    color: 'black',
-    marginTop: 20,
-    marginBottom: 10,
-  },
-});
-
-export default Login;
+export default LogIn;

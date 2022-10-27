@@ -3,13 +3,13 @@ import React, {memo, useEffect, useMemo, useState} from 'react';
 import {
   Image,
   SafeAreaView,
-  StyleSheet,
   Text,
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import {pokemonApi} from '../../../api/pokemonApi';
-import {RootParamsType, SinglePokemonType} from '../../../types';
+import {pokemonApi} from '../../api/pokemonApi';
+import {RootParamsType, SinglePokemonType} from '../../types';
+import PokemonCardStyles from './PokemonCard.styles';
 
 type PropsType = {
   id: string;
@@ -40,7 +40,7 @@ const PokemonCard: React.FC<PropsType> = ({id}) => {
   }, [pokemonData]);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={PokemonCardStyles.container}>
       <TouchableWithoutFeedback
         onPress={() => {
           navigation.navigate('SinglePokemonPage', {
@@ -52,13 +52,18 @@ const PokemonCard: React.FC<PropsType> = ({id}) => {
             source={{
               uri: pokemonData?.sprites.front_default,
             }}
-            style={styles.logo}
+            style={PokemonCardStyles.logo}
           />
           <View>
-            <Text style={styles.text}>{`Name: ${pokemonName}`}</Text>
-            <Text style={styles.text}>{`Weight: ${pokemonData?.weight}`}</Text>
-            <Text style={styles.text}>{`Height: ${pokemonData?.height}`}</Text>
-            <Text style={styles.text}>
+            <Text style={PokemonCardStyles.text}>{`Name: ${pokemonName}`}</Text>
+            <Text
+              style={
+                PokemonCardStyles.text
+              }>{`Weight: ${pokemonData?.weight}`}</Text>
+            <Text style={PokemonCardStyles.text}>
+              {`Height: ${pokemonData?.height}`}
+            </Text>
+            <Text style={PokemonCardStyles.text}>
               {`Base experience: ${pokemonData?.base_experience}`}
             </Text>
           </View>
@@ -67,34 +72,5 @@ const PokemonCard: React.FC<PropsType> = ({id}) => {
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    backgroundColor: '#E2E9E9',
-
-    position: 'relative',
-
-    margin: 10,
-    borderColor: 'grey',
-    borderRadius: 20,
-    borderWidth: 2,
-
-    width: 140,
-    maxHeight: 180,
-    height: '100%',
-  },
-  logo: {
-    alignSelf: 'center',
-    width: 100,
-    height: 100,
-  },
-  text: {
-    fontFamily: 'PTSans-Regular',
-    fontSize: 12,
-    color: 'black',
-  },
-});
 
 export default memo(PokemonCard);

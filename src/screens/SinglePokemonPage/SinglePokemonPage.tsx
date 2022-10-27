@@ -5,14 +5,15 @@ import {
   useRoute,
 } from '@react-navigation/native';
 import React, {useEffect, useMemo, useState} from 'react';
-import {ScrollView, StyleSheet, SafeAreaView, View, Text} from 'react-native';
+import {ScrollView, SafeAreaView, View, Text} from 'react-native';
 
 import {pokemonApi} from '../../api/pokemonApi';
-import CustomButton from '../../components/Button';
+import CustomButton from '../../components/CustomButton/CustomButton';
 import {RootParamsType, SinglePokemonType} from '../../types';
-import PokemonAbilities from './components/PokemonAbilities';
-import PokemonImages from './components/PokemonImages';
-import PokemonStats from './components/PokemonStats';
+import PokemonAbilities from '../../components/PokemonAbilities/PokemonAbilities';
+import PokemonImages from '../../components/PokemonImages/PokemonImages';
+import PokemonStats from '../../components/PokemonStats/PokemonStats';
+import SinglePokemonPageStyles from './SinglePokemonPage.styles';
 
 type ParamList = {
   SinglePokemonPage: {
@@ -47,9 +48,9 @@ const SinglePokemonPage = () => {
   }, [id]);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.wrapper}>
-        <View style={styles.imageWrapper}>
+    <SafeAreaView style={SinglePokemonPageStyles.container}>
+      <ScrollView style={SinglePokemonPageStyles.wrapper}>
+        <View style={SinglePokemonPageStyles.imageWrapper}>
           <PokemonImages
             title="Adult pokemon"
             frontImage={pokemonData?.sprites.front_default}
@@ -61,23 +62,30 @@ const SinglePokemonPage = () => {
             backImage={pokemonData?.sprites.back_shiny}
           />
         </View>
-        <View style={styles.info}>
-          <Text style={styles.infoText}>{`Name: ${pokemonName}`}</Text>
+        <View style={SinglePokemonPageStyles.info}>
           <Text
-            style={styles.infoText}>{`Weight: ${pokemonData?.weight}`}</Text>
+            style={
+              SinglePokemonPageStyles.infoText
+            }>{`Name: ${pokemonName}`}</Text>
           <Text
-            style={styles.infoText}>{`Height: ${pokemonData?.height}`}</Text>
-          <Text style={styles.infoText}>
+            style={
+              SinglePokemonPageStyles.infoText
+            }>{`Weight: ${pokemonData?.weight}`}</Text>
+          <Text
+            style={
+              SinglePokemonPageStyles.infoText
+            }>{`Height: ${pokemonData?.height}`}</Text>
+          <Text style={SinglePokemonPageStyles.infoText}>
             {`Base experience: ${pokemonData?.base_experience}`}
           </Text>
         </View>
-        <Text style={styles.text}>Stats</Text>
+        <Text style={SinglePokemonPageStyles.text}>Stats</Text>
         {pokemonData?.stats && <PokemonStats stats={pokemonData.stats} />}
-        <Text style={styles.text}>Abilities</Text>
+        <Text style={SinglePokemonPageStyles.text}>Abilities</Text>
         {pokemonData?.abilities && (
           <PokemonAbilities abilities={pokemonData?.abilities} />
         )}
-        <View style={styles.buttonWrapper}>
+        <View style={SinglePokemonPageStyles.buttonWrapper}>
           <CustomButton
             title="More Pokemon Images"
             onPress={() => {
@@ -91,66 +99,5 @@ const SinglePokemonPage = () => {
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  wrapper: {
-    flex: 1,
-    width: '100%',
-  },
-  imageWrapper: {
-    backgroundColor: '#E2E9E9',
-
-    borderColor: 'grey',
-    borderRadius: 20,
-    borderWidth: 2,
-
-    marginHorizontal: 20,
-    marginVertical: 5,
-  },
-  imageContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  info: {
-    backgroundColor: '#E2E9E9',
-
-    borderColor: 'grey',
-    borderRadius: 20,
-    borderWidth: 2,
-
-    marginHorizontal: 20,
-    marginVertical: 5,
-
-    padding: 10,
-  },
-  infoText: {
-    fontFamily: 'PTSans-Regular',
-    fontSize: 20,
-    color: 'black',
-  },
-  logo: {
-    width: 100,
-    height: 100,
-  },
-  text: {
-    fontFamily: 'PTSans-Regular',
-    fontSize: 20,
-    color: 'black',
-    alignSelf: 'center',
-  },
-  buttonWrapper: {
-    width: 200,
-    paddingVertical: 10,
-    alignSelf: 'center',
-  },
-});
 
 export default SinglePokemonPage;

@@ -5,7 +5,6 @@ import {
   SafeAreaView,
   ScrollView,
   Image,
-  StyleSheet,
   TextInput,
   View,
   Text,
@@ -14,7 +13,8 @@ import {RootParamsType} from '../../types';
 import {userApi} from '../../api/userApi';
 import {useAppDispatch} from '../../store/hooks/hooks';
 import {setUser} from '../../store/user/user';
-import CustomButton from '../../components/Button';
+import CustomButton from '../../components/CustomButton/CustomButton';
+import SignUpStyles from './SignUp.styles';
 
 const SignUp = () => {
   const [signUpState, setSignUpState] = useState({
@@ -65,37 +65,37 @@ const SignUp = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.wrapper}>
+    <SafeAreaView style={SignUpStyles.container}>
+      <ScrollView style={SignUpStyles.wrapper}>
         <Image
           source={require('../../assets/pokemon-logo.png')}
-          style={styles.logo}
+          style={SignUpStyles.logo}
         />
-        <View style={styles.inputsWrapper}>
+        <View style={SignUpStyles.inputsWrapper}>
           <TextInput
-            style={styles.input}
+            style={SignUpStyles.input}
             placeholder="Username"
             value={signUpState.username}
             onChangeText={value => onChangeText('username', value)}
           />
           <TextInput
-            style={styles.input}
+            style={SignUpStyles.input}
             placeholder="Password"
             secureTextEntry={true}
             value={signUpState.password}
             onChangeText={value => onChangeText('password', value)}
           />
           <TextInput
-            style={styles.input}
+            style={SignUpStyles.input}
             placeholder="Repeat password"
             secureTextEntry={true}
             value={signUpState.repeatedPassword}
             onChangeText={value => onChangeText('repeatedPassword', value)}
           />
         </View>
-        <View style={styles.buttonsWrapper}>
+        <View style={SignUpStyles.buttonsWrapper}>
           <CustomButton title="Submit" onPress={onSubmit} />
-          <Text style={styles.title}>Already registered?</Text>
+          <Text style={SignUpStyles.title}>Already registered?</Text>
           <CustomButton
             title="Log In"
             onPress={() => navigation.navigate('Login')}
@@ -105,64 +105,5 @@ const SignUp = () => {
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    margin: 15,
-  },
-  wrapper: {
-    flex: 1,
-    width: '100%',
-  },
-  inputsWrapper: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
-    marginVertical: 20,
-  },
-  logo: {
-    alignSelf: 'center',
-    width: 150,
-    height: 80,
-  },
-  input: {
-    fontSize: 20,
-    color: 'black',
-    width: '100%',
-
-    marginVertical: 5,
-    padding: 20,
-
-    borderWidth: 2,
-    borderColor: 'rgba(175, 47, 47, 0.15)',
-    borderRadius: 20,
-
-    backgroundColor: 'rgba(0, 0, 0, 0.003)',
-    shadowColor: 'inset 0 -2px 1px rgba(0, 0, 0, 0.03)',
-  },
-  buttonsWrapper: {
-    flex: 1,
-    justifyContent: 'flex-end',
-  },
-  button: {
-    padding: 10,
-    borderColor: 'grey',
-    borderWidth: 2,
-    alignSelf: 'flex-end',
-    marginTop: 10,
-    marginRight: 10,
-  },
-  title: {
-    fontFamily: 'FuzzyBubbles-Regular',
-    fontSize: 14,
-    alignSelf: 'center',
-    color: 'black',
-    marginTop: 20,
-    marginBottom: 10,
-  },
-});
 
 export default SignUp;

@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react';
 import {Text, View, Image} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import CustomButton from '../../components/Button';
+import CustomButton from '../../components/CustomButton/CustomButton';
 import {useAppDispatch, useAppSelector} from '../../store/hooks/hooks';
 import {setUser} from '../../store/user/user';
 import UserProfilesStyles from './UserProfile.styles';

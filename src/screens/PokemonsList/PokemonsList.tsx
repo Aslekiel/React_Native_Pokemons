@@ -1,15 +1,15 @@
 import React, {useEffect, useState} from 'react';
-import PokemonCard from './components/PokemonCard';
+import PokemonCard from '../../components/PokemonCard/PokemonCard';
 import {
   ListRenderItem,
   FlatList,
-  StyleSheet,
   View,
   ActivityIndicator,
   SafeAreaView,
 } from 'react-native';
 import type {SinglePokemonType} from '../../types';
 import {pokemonApi} from '../../api/pokemonApi';
+import PokemonsListStyles from './PokemonList.styles';
 
 const limit = 8;
 
@@ -49,14 +49,14 @@ const PokemonsList = () => {
 
   const renderLoader = () => {
     return isLoading ? (
-      <View style={styles.loading}>
+      <View style={PokemonsListStyles.loading}>
         <ActivityIndicator size="large" color="rgba(175, 47, 47, 0.55)" />
       </View>
     ) : null;
   };
 
   return isFirstLoading ? (
-    <View style={styles.firstLoading}>
+    <View style={PokemonsListStyles.firstLoading}>
       <ActivityIndicator size="large" color="rgba(175, 47, 47, 0.55)" />
     </View>
   ) : (
@@ -66,7 +66,7 @@ const PokemonsList = () => {
         numColumns={2}
         renderItem={renderItem}
         keyExtractor={item => item.name}
-        contentContainerStyle={styles.container}
+        contentContainerStyle={PokemonsListStyles.container}
         refreshing={isLoading}
         onEndReached={loadMorePokemons}
         onEndReachedThreshold={0.2}
@@ -75,22 +75,5 @@ const PokemonsList = () => {
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
-  },
-  firstLoading: {
-    flex: 1,
-    justifyContent: 'center',
-    alignSelf: 'center',
-  },
-  loading: {
-    paddingVertical: 20,
-  },
-});
 
 export default PokemonsList;

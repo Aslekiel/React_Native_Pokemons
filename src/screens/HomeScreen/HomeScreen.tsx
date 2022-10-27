@@ -1,15 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  SafeAreaView,
-  ScrollView,
-} from 'react-native';
+import {View, Text, Image, SafeAreaView, ScrollView} from 'react-native';
 import {pokemonApi} from '../../api/pokemonApi';
-import CustomButton from '../../components/Button';
+import CustomButton from '../../components/CustomButton/CustomButton';
 import {SinglePokemonType} from '../../types';
+import HomeScreenStyles from './HomeScreen.styles';
 
 const HomeScreen = () => {
   const [pokemon, setPokemon] = useState<SinglePokemonType>();
@@ -33,13 +27,13 @@ const HomeScreen = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView contentContainerStyle={styles.contentContainer}>
+    <SafeAreaView style={HomeScreenStyles.container}>
+      <ScrollView contentContainerStyle={HomeScreenStyles.contentContainer}>
         <Image
           source={require('../../assets/pokemon-logo.png')}
-          style={styles.logo}
+          style={HomeScreenStyles.logo}
         />
-        <Text style={styles.text}>
+        <Text style={HomeScreenStyles.text}>
           Pokémon are creatures of all shapes and sizes who live in the wild or
           alongside their human partners (called “Trainers”). During their
           adventures, Pokémon grow and become more experienced and even, on
@@ -48,21 +42,21 @@ const HomeScreen = () => {
           discovered!
         </Text>
         {pokemon ? (
-          <View style={styles.pokemonWrapper}>
+          <View style={HomeScreenStyles.pokemonWrapper}>
             <Image
-              style={styles.pokemonImage}
+              style={HomeScreenStyles.pokemonImage}
               source={{
                 uri: pokemon?.sprites.other['official-artwork'].front_default,
               }}
             />
-            <Text style={styles.pokemonName}>
+            <Text style={HomeScreenStyles.pokemonName}>
               {pokemon?.name[0].toLocaleUpperCase() + pokemon?.name.slice(1)}
             </Text>
           </View>
         ) : (
-          <View style={styles.pokemonWrapper}>
+          <View style={HomeScreenStyles.pokemonWrapper}>
             <Image
-              style={styles.pokemonImage}
+              style={HomeScreenStyles.pokemonImage}
               source={require('../../assets/pokeball.png')}
             />
           </View>
@@ -72,57 +66,5 @@ const HomeScreen = () => {
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginHorizontal: 15,
-  },
-  contentContainer: {
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
-    paddingBottom: 10,
-  },
-  logo: {
-    maxWidth: 150,
-    maxHeight: 80,
-  },
-  text: {
-    fontFamily: 'FuzzyBubbles-Regular',
-    fontSize: 15,
-    color: 'black',
-    textAlign: 'justify',
-    textShadowColor: 'grey',
-  },
-  pokemonWrapper: {
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-
-    backgroundColor: '#E2E9E9',
-
-    width: 200,
-    height: 200,
-
-    borderColor: 'grey',
-    borderRadius: 20,
-    borderWidth: 2,
-
-    padding: 20,
-
-    marginVertical: 10,
-  },
-  pokemonImage: {
-    width: 120,
-    height: 120,
-  },
-  pokemonName: {
-    fontFamily: 'PTSans-Regular',
-    fontSize: 20,
-    color: 'black',
-  },
-});
 
 export default HomeScreen;

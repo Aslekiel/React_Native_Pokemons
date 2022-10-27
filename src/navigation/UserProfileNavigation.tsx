@@ -1,8 +1,9 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {StackParamsType} from '../types';
-import Login from '../screens/Login/Login';
+
 import SignUp from '../screens/SignUp/SignUp';
+import LogIn from '../screens/LogIn/LogIn';
 
 const Stack = createNativeStackNavigator<StackParamsType>();
 
@@ -12,7 +13,7 @@ const UserProfileNavigation = () => {
       <Stack.Group>
         <Stack.Screen
           name="Login"
-          component={Login}
+          component={LogIn}
           options={{headerShown: false}}
         />
         <Stack.Screen

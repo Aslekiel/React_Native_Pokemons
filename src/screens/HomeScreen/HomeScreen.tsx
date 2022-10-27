@@ -1,5 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, Image, StyleSheet, SafeAreaView} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  SafeAreaView,
+  ScrollView,
+} from 'react-native';
 import {pokemonApi} from '../../api/pokemonApi';
 import CustomButton from '../../components/Button';
 import {SinglePokemonType} from '../../types';
@@ -27,39 +34,41 @@ const HomeScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Image
-        source={require('../../assets/pokemon-logo.png')}
-        style={styles.logo}
-      />
-      <Text style={styles.text}>
-        Pokémon are creatures of all shapes and sizes who live in the wild or
-        alongside their human partners (called “Trainers”). During their
-        adventures, Pokémon grow and become more experienced and even, on
-        occasion, evolve into stronger Pokémon. Hundreds of known Pokémon
-        inhabit the Pokémon universe, with untold numbers waiting to be
-        discovered!
-      </Text>
-      {pokemon ? (
-        <View style={styles.pokemonWrapper}>
-          <Image
-            style={styles.pokemonImage}
-            source={{
-              uri: pokemon?.sprites.other['official-artwork'].front_default,
-            }}
-          />
-          <Text style={styles.pokemonName}>
-            {pokemon?.name[0].toLocaleUpperCase() + pokemon?.name.slice(1)}
-          </Text>
-        </View>
-      ) : (
-        <View style={styles.pokemonWrapper}>
-          <Image
-            style={styles.pokemonImage}
-            source={require('../../assets/pokeball.png')}
-          />
-        </View>
-      )}
-      <CustomButton title="Random pokemon for me!" onPress={onPressRandom} />
+      <ScrollView contentContainerStyle={styles.contentContainer}>
+        <Image
+          source={require('../../assets/pokemon-logo.png')}
+          style={styles.logo}
+        />
+        <Text style={styles.text}>
+          Pokémon are creatures of all shapes and sizes who live in the wild or
+          alongside their human partners (called “Trainers”). During their
+          adventures, Pokémon grow and become more experienced and even, on
+          occasion, evolve into stronger Pokémon. Hundreds of known Pokémon
+          inhabit the Pokémon universe, with untold numbers waiting to be
+          discovered!
+        </Text>
+        {pokemon ? (
+          <View style={styles.pokemonWrapper}>
+            <Image
+              style={styles.pokemonImage}
+              source={{
+                uri: pokemon?.sprites.other['official-artwork'].front_default,
+              }}
+            />
+            <Text style={styles.pokemonName}>
+              {pokemon?.name[0].toLocaleUpperCase() + pokemon?.name.slice(1)}
+            </Text>
+          </View>
+        ) : (
+          <View style={styles.pokemonWrapper}>
+            <Image
+              style={styles.pokemonImage}
+              source={require('../../assets/pokeball.png')}
+            />
+          </View>
+        )}
+        <CustomButton title="Random pokemon for me!" onPress={onPressRandom} />
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -67,9 +76,14 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginHorizontal: 15,
+  },
+  contentContainer: {
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    margin: 15,
+    paddingBottom: 10,
   },
   logo: {
     maxWidth: 150,

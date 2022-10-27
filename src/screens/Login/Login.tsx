@@ -1,20 +1,14 @@
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
 import Toast from 'react-native-toast-message';
-import {
-  SafeAreaView,
-  Image,
-  TextInput,
-  View,
-  Text,
-  ScrollView,
-} from 'react-native';
+import {SafeAreaView, Image, View, Text, ScrollView} from 'react-native';
 import {useAppDispatch} from '../../store/hooks/hooks';
 import {RootParamsType} from '../../types';
 import {userApi} from '../../api/userApi';
 import {setUser} from '../../store/user/user';
 import CustomButton from '../../components/CustomButton/CustomButton';
 import LogInStyles from './LogIn.styles';
+import CustomInput from '../../components/CustomInput/CustomInput';
 
 const LogIn = () => {
   const [logInState, setLogInState] = useState({
@@ -59,14 +53,12 @@ const LogIn = () => {
           style={LogInStyles.logo}
         />
         <View style={LogInStyles.inputsWrapper}>
-          <TextInput
-            style={LogInStyles.input}
+          <CustomInput
             placeholder="Username"
             value={logInState.username}
             onChangeText={value => onChangeText('username', value)}
           />
-          <TextInput
-            style={LogInStyles.input}
+          <CustomInput
             placeholder="Password"
             secureTextEntry={true}
             value={logInState.password}

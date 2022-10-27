@@ -1,20 +1,14 @@
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
 import Toast from 'react-native-toast-message';
-import {
-  SafeAreaView,
-  ScrollView,
-  Image,
-  TextInput,
-  View,
-  Text,
-} from 'react-native';
+import {SafeAreaView, ScrollView, Image, View, Text} from 'react-native';
 import {RootParamsType} from '../../types';
 import {userApi} from '../../api/userApi';
 import {useAppDispatch} from '../../store/hooks/hooks';
 import {setUser} from '../../store/user/user';
 import CustomButton from '../../components/CustomButton/CustomButton';
 import SignUpStyles from './SignUp.styles';
+import CustomInput from '../../components/CustomInput/CustomInput';
 
 const SignUp = () => {
   const [signUpState, setSignUpState] = useState({
@@ -72,21 +66,18 @@ const SignUp = () => {
           style={SignUpStyles.logo}
         />
         <View style={SignUpStyles.inputsWrapper}>
-          <TextInput
-            style={SignUpStyles.input}
+          <CustomInput
             placeholder="Username"
             value={signUpState.username}
             onChangeText={value => onChangeText('username', value)}
           />
-          <TextInput
-            style={SignUpStyles.input}
+          <CustomInput
             placeholder="Password"
             secureTextEntry={true}
             value={signUpState.password}
             onChangeText={value => onChangeText('password', value)}
           />
-          <TextInput
-            style={SignUpStyles.input}
+          <CustomInput
             placeholder="Repeat password"
             secureTextEntry={true}
             value={signUpState.repeatedPassword}

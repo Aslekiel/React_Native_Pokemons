@@ -1,5 +1,3 @@
-import {GestureResponderEvent} from 'react-native';
-
 export type PokemonsApiType = {
   pokemons: SinglePokemonType[];
   pagination: PaginationType;
@@ -90,7 +88,7 @@ export type PokemonTypesType = {
   };
 };
 
-export type BottomTabParamList = {
+export type BottomTabParamListType = {
   Home: undefined;
   Pokemons: undefined;
   Profile: undefined;
@@ -112,19 +110,14 @@ export type RootParamsType = {
   SignUp: undefined;
 };
 
-export type IUserType = {
-  user: IUser | null | undefined;
+export type UserType = {
+  user: SingleUserType | null | undefined;
   token: string | null | undefined;
 };
 
-export type IUser = {
+export type SingleUserType = {
   id?: string;
   fullname?: string;
   username?: string;
   avatar?: string;
-};
-
-export type CustomButtonType = {
-  title: string;
-  onPress: ((event: GestureResponderEvent) => void) | undefined;
 };

@@ -1,11 +1,13 @@
-import {NavigationProp, useNavigation} from '@react-navigation/native';
-import React, {useState} from 'react';
+/* eslint-disable global-require */
+import type { NavigationProp } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
+import React, { useState } from 'react';
 import Toast from 'react-native-toast-message';
-import {SafeAreaView, Image, View, ScrollView} from 'react-native';
-import {useAppDispatch} from '../../store/hooks/hooks';
-import {RootParamsType} from '../../types';
-import {userApi} from '../../api/userApi';
-import {setUser} from '../../store/user/user';
+import { SafeAreaView, Image, View, ScrollView } from 'react-native';
+import { useAppDispatch } from '../../store/hooks/hooks';
+import type { RootParamsType } from '../../types';
+import { userApi } from '../../api/userApi';
+import { setUser } from '../../store/user/user';
 import CustomButton from '../../components/CustomButton/CustomButton';
 import LogInStyles from './LogIn.styles';
 import CustomInput from '../../components/CustomInput/CustomInput';
@@ -22,7 +24,7 @@ const LogIn = () => {
   const dispatch = useAppDispatch();
 
   const onChangeText = (key: string, value: string) => {
-    setLogInState({...logInState, [key]: value});
+    setLogInState({ ...logInState, [key]: value });
   };
 
   const onSubmit = async () => {
@@ -42,6 +44,7 @@ const LogIn = () => {
         password: '',
       });
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.log(err);
     }
   };
@@ -57,13 +60,13 @@ const LogIn = () => {
           <CustomInput
             placeholder="Username"
             value={logInState.username}
-            onChangeText={value => onChangeText('username', value)}
+            onChangeText={(value) => onChangeText('username', value)}
           />
           <CustomInput
             placeholder="Password"
-            secureTextEntry={true}
+            secureTextEntry
             value={logInState.password}
-            onChangeText={value => onChangeText('password', value)}
+            onChangeText={(value) => onChangeText('password', value)}
           />
         </View>
         <View style={LogInStyles.buttonsWrapper}>

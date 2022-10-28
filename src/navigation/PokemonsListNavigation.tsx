@@ -1,14 +1,14 @@
-import React, {useLayoutEffect} from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {StackParamsType} from '../types';
-import PokemonsList from '../screens/PokemonsList/PokemonsList';
-import SinglePokemonPage from '../screens/SinglePokemonPage/SinglePokemonPage';
-import AllPokemonImages from '../screens/AllPokemonImages/AllPokemonImages';
+import React, { useLayoutEffect } from 'react';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {
   getFocusedRouteNameFromRoute,
   useNavigation,
   useRoute,
 } from '@react-navigation/native';
+import type { StackParamsType } from '../types';
+import PokemonsList from '../screens/PokemonsList/PokemonsList';
+import SinglePokemonPage from '../screens/SinglePokemonPage/SinglePokemonPage';
+import AllPokemonImages from '../screens/AllPokemonImages/AllPokemonImages';
 
 const Stack = createNativeStackNavigator<StackParamsType>();
 
@@ -22,9 +22,9 @@ const PokemonsListNavigation = () => {
 
     if (routeName) {
       if (tabHiddenRoutes.includes(routeName)) {
-        navigation.setOptions({tabBarStyle: {display: 'none'}});
+        navigation.setOptions({ tabBarStyle: { display: 'none' } });
       } else {
-        navigation.setOptions({tabBarStyle: {display: 'flex'}});
+        navigation.setOptions({ tabBarStyle: { display: 'flex' } });
       }
     }
   }, [navigation, route]);
@@ -35,17 +35,17 @@ const PokemonsListNavigation = () => {
         <Stack.Screen
           name="PokemonsList"
           component={PokemonsList}
-          options={{headerShown: false}}
+          options={{ headerShown: false }}
         />
         <Stack.Screen
           name="SinglePokemonPage"
           component={SinglePokemonPage}
-          options={{title: 'Pokemon Info'}}
+          options={{ title: 'Pokemon Info' }}
         />
         <Stack.Screen
           name="PokemonImages"
           component={AllPokemonImages}
-          options={{title: 'Pokemon Images'}}
+          options={{ title: 'Pokemon Images' }}
         />
       </Stack.Group>
     </Stack.Navigator>

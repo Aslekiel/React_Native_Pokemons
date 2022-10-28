@@ -1,21 +1,22 @@
-import {RouteProp, useRoute} from '@react-navigation/native';
+import type { RouteProp } from '@react-navigation/native';
+import { useRoute } from '@react-navigation/native';
 import React from 'react';
-import {Image, SafeAreaView, View, ScrollView} from 'react-native';
-import {SvgUri} from 'react-native-svg';
+import { Image, SafeAreaView, View, ScrollView } from 'react-native';
+import { SvgUri } from 'react-native-svg';
 import CustomText from '../../components/CustomText/CustomText';
-import {SpritesType} from '../../types';
+import type { SpritesType } from '../../types';
 import AllPokemonImagesStyles from './AllPokemonImages.styles';
 
-type ParamList = {
+type ParamListType = {
   PokemonImages: {
     images: SpritesType;
   };
 };
 
 const AllPokemonImages = () => {
-  const route = useRoute<RouteProp<ParamList, 'PokemonImages'>>();
+  const route = useRoute<RouteProp<ParamListType, 'PokemonImages'>>();
 
-  const {images} = route.params;
+  const { images } = route.params;
 
   return (
     <SafeAreaView>
@@ -33,7 +34,7 @@ const AllPokemonImages = () => {
             <CustomText>Artwork</CustomText>
             <Image
               style={AllPokemonImagesStyles.image}
-              source={{uri: images.other['official-artwork'].front_default}}
+              source={{ uri: images.other['official-artwork'].front_default }}
             />
           </View>
         </View>
@@ -42,14 +43,14 @@ const AllPokemonImages = () => {
             <CustomText>3D Adult</CustomText>
             <Image
               style={AllPokemonImagesStyles.image}
-              source={{uri: images.other.home.front_default}}
+              source={{ uri: images.other.home.front_default }}
             />
           </View>
           <View style={AllPokemonImagesStyles.imageWrapper}>
             <CustomText>3D Tiny</CustomText>
             <Image
               style={AllPokemonImagesStyles.image}
-              source={{uri: images.other.home.front_shiny}}
+              source={{ uri: images.other.home.front_shiny }}
             />
           </View>
         </View>

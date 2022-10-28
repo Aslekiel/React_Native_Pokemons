@@ -1,22 +1,24 @@
-import {
+/* eslint-disable no-unsafe-optional-chaining */
+import type {
   NavigationProp,
-  RouteProp,
+  RouteProp } from '@react-navigation/native';
+import {
   useNavigation,
   useRoute,
 } from '@react-navigation/native';
-import React, {useEffect, useMemo, useState} from 'react';
-import {ScrollView, SafeAreaView, View} from 'react-native';
+import React, { useEffect, useMemo, useState } from 'react';
+import { ScrollView, SafeAreaView, View } from 'react-native';
 
-import {pokemonApi} from '../../api/pokemonApi';
+import { pokemonApi } from '../../api/pokemonApi';
 import CustomButton from '../../components/CustomButton/CustomButton';
-import {RootParamsType, SinglePokemonType} from '../../types';
+import type { RootParamsType, SinglePokemonType } from '../../types';
 import PokemonAbilities from '../../components/PokemonAbilities/PokemonAbilities';
 import PokemonImages from '../../components/PokemonImages/PokemonImages';
 import PokemonStats from '../../components/PokemonStats/PokemonStats';
 import SinglePokemonPageStyles from './SinglePokemonPage.styles';
 import CustomText from '../../components/CustomText/CustomText';
 
-type ParamList = {
+type ParamListType = {
   SinglePokemonPage: {
     id: string;
   };
@@ -24,10 +26,10 @@ type ParamList = {
 
 const SinglePokemonPage = () => {
   const [pokemonData, setPokemonData] = useState<SinglePokemonType>();
-  const route = useRoute<RouteProp<ParamList, 'SinglePokemonPage'>>();
+  const route = useRoute<RouteProp<ParamListType, 'SinglePokemonPage'>>();
 
   const navigation = useNavigation<NavigationProp<RootParamsType>>();
-  const {id} = route.params;
+  const { id } = route.params;
 
   const pokemonName = useMemo(() => {
     if (pokemonData) {
@@ -43,6 +45,7 @@ const SinglePokemonPage = () => {
         const res = await pokemonApi.getPokemonData(Number(id));
         setPokemonData(res.data);
       } catch (error) {
+        // eslint-disable-next-line no-console
         console.log(error);
       }
     })();

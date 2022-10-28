@@ -1,9 +1,11 @@
-import React, {useEffect, useState} from 'react';
-import {View, Image, SafeAreaView, ScrollView} from 'react-native';
-import {pokemonApi} from '../../api/pokemonApi';
+/* eslint-disable global-require */
+/* eslint-disable no-unsafe-optional-chaining */
+import React, { useEffect, useState } from 'react';
+import { View, Image, SafeAreaView, ScrollView } from 'react-native';
+import { pokemonApi } from '../../api/pokemonApi';
 import CustomButton from '../../components/CustomButton/CustomButton';
 import CustomText from '../../components/CustomText/CustomText';
-import {SinglePokemonType} from '../../types';
+import type { SinglePokemonType } from '../../types';
 import HomeScreenStyles from './HomeScreen.styles';
 
 const HomeScreen = () => {
@@ -18,6 +20,7 @@ const HomeScreen = () => {
           setPokemon(res.data);
         }
       } catch (error) {
+        // eslint-disable-next-line no-console
         console.log(error);
       }
     })();

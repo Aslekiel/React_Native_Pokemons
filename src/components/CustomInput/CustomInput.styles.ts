@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 const CustomInputStyles = StyleSheet.create({
   inputsWrapper: {

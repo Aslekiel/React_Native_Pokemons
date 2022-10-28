@@ -1,8 +1,9 @@
 import React from 'react';
 
-import {Text, TextProps, StyleSheet} from 'react-native';
+import type { TextProps } from 'react-native';
+import { Text, StyleSheet } from 'react-native';
 
-const CustomText: React.FC<TextProps> = props => {
+const CustomText: React.FC<TextProps> = (props) => {
   return <Text {...props} style={[styles.root, props.style]} />;
 };
 

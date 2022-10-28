@@ -1,13 +1,15 @@
-import {NavigationProp, useNavigation} from '@react-navigation/native';
-import React, {memo, useEffect, useMemo, useState} from 'react';
+/* eslint-disable no-unsafe-optional-chaining */
+import type { NavigationProp } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
+import React, { memo, useEffect, useMemo, useState } from 'react';
 import {
   Image,
   SafeAreaView,
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import {pokemonApi} from '../../api/pokemonApi';
-import {RootParamsType, SinglePokemonType} from '../../types';
+import { pokemonApi } from '../../api/pokemonApi';
+import type { RootParamsType, SinglePokemonType } from '../../types';
 import CustomText from '../CustomText/CustomText';
 import PokemonCardStyles from './PokemonCard.styles';
 
@@ -15,7 +17,7 @@ type PropsType = {
   id: string;
 };
 
-const PokemonCard: React.FC<PropsType> = ({id}) => {
+const PokemonCard: React.FC<PropsType> = ({ id }) => {
   const [pokemonData, setPokemonData] = useState<SinglePokemonType>();
 
   const navigation = useNavigation<NavigationProp<RootParamsType>>();
@@ -26,6 +28,7 @@ const PokemonCard: React.FC<PropsType> = ({id}) => {
         const res = await pokemonApi.getPokemonData(+id);
         setPokemonData(res.data);
       } catch (error) {
+        // eslint-disable-next-line no-console
         console.log(error);
       }
     })();
@@ -44,9 +47,10 @@ const PokemonCard: React.FC<PropsType> = ({id}) => {
       <TouchableWithoutFeedback
         onPress={() => {
           navigation.navigate('SinglePokemonPage', {
-            id: id,
+            id,
           });
-        }}>
+        }}
+>
         <View>
           <Image
             source={{
@@ -58,11 +62,15 @@ const PokemonCard: React.FC<PropsType> = ({id}) => {
             <CustomText
               style={
                 PokemonCardStyles.text
-              }>{`Name: ${pokemonName}`}</CustomText>
+              }
+>{`Name: ${pokemonName}`}
+            </CustomText>
             <CustomText
               style={
                 PokemonCardStyles.text
-              }>{`Weight: ${pokemonData?.weight}`}</CustomText>
+              }
+>{`Weight: ${pokemonData?.weight}`}
+            </CustomText>
             <CustomText style={PokemonCardStyles.text}>
               {`Height: ${pokemonData?.height}`}
             </CustomText>

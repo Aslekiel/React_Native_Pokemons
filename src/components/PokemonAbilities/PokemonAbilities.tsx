@@ -1,6 +1,6 @@
 import React from 'react';
-import {View} from 'react-native';
-import {AbilitiesType} from '../../types';
+import { View } from 'react-native';
+import type { AbilitiesType } from '../../types';
 import CustomText from '../CustomText/CustomText';
 import PokemonAbilitiesStyles from './PokemonAbilities.styles';
 
@@ -8,7 +8,7 @@ type PropsType = {
   abilities: AbilitiesType[];
 };
 
-const PokemonAbilities: React.FC<PropsType> = ({abilities}) => {
+const PokemonAbilities: React.FC<PropsType> = ({ abilities }) => {
   return (
     <View style={PokemonAbilitiesStyles.wrapper}>
       {abilities.map((ability, index) => {

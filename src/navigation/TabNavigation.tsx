@@ -1,24 +1,24 @@
-import React, {useEffect, useState} from 'react';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {BottomTabParamList} from '../types';
+import React, { useEffect, useState } from 'react';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import type { BottomTabParamListType } from '../types';
 
 import HomeScreen from '../screens/HomeScreen/HomeScreen';
 import PokemonsListNavigation from './PokemonsListNavigation';
 import LogInSignUpNavigation from './LogInSignUpNavigation';
 import UserProfile from '../screens/UserProfile/UserProfile';
-import {useAppDispatch, useAppSelector} from '../store/hooks/hooks';
-import {userApi} from '../api/userApi';
-import {setUser} from '../store/user/user';
+import { useAppDispatch, useAppSelector } from '../store/hooks/hooks';
+import { userApi } from '../api/userApi';
+import { setUser } from '../store/user/user';
 
 import ProfileIcon from '../assets/pokemon_trainer.svg';
 import PokeballIcon from '../assets/pokeball_icon.svg';
 import HomeIcon from '../assets/home.svg';
 
-const Tab = createBottomTabNavigator<BottomTabParamList>();
+const Tab = createBottomTabNavigator<BottomTabParamListType>();
 
 const TabNavigation = () => {
   const [isSignedIn, setIsSignedIn] = useState(false);
-  const {token} = useAppSelector(state => state.user);
+  const { token } = useAppSelector((state) => state.user);
 
   const dispatch = useAppDispatch();
 
@@ -33,6 +33,7 @@ const TabNavigation = () => {
         const res = await userApi.checkUser();
         dispatch(setUser(res));
       } catch (error) {
+        // eslint-disable-next-line no-console
         console.log(error);
       } finally {
         setIsSignedIn(true);

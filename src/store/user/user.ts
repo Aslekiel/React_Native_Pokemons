@@ -1,6 +1,6 @@
-import type {PayloadAction} from '@reduxjs/toolkit';
-import {createSlice} from '@reduxjs/toolkit';
-import type {IUserType} from '../../types';
+import type { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+import type { IUserType } from '../../types';
 
 const initialState: IUserType = {
   user: {
@@ -23,6 +23,6 @@ const user = createSlice({
   },
 });
 
-export const {setUser} = user.actions;
+export const { setUser } = user.actions;
 
 export default user.reducer;

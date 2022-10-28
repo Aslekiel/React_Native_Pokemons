@@ -1,7 +1,7 @@
-import type {AxiosResponse} from 'axios';
+import type { AxiosResponse } from 'axios';
 import instance from '.';
 
-import type {SinglePokemonType} from '../types';
+import type { SinglePokemonType } from '../types';
 
 const getPokemonData = async (
   id: number,
@@ -11,4 +11,4 @@ const getPokemonData = async (
   return data;
 };
 
-export const pokemonApi = {getPokemonData};
+export const pokemonApi = { getPokemonData };

@@ -1,5 +1,5 @@
 import React from 'react';
-import {TextInput, View} from 'react-native';
+import { TextInput, View } from 'react-native';
 import CustomInputStyles from './CustomInput.styles';
 
 type PropsType = {
@@ -9,7 +9,7 @@ type PropsType = {
   onChangeText: ((text: string) => void) | undefined;
 };
 
-const CustomInput: React.FC<PropsType> = props => {
+const CustomInput: React.FC<PropsType> = (props) => {
   return (
     <View style={CustomInputStyles.inputsWrapper}>
       <TextInput

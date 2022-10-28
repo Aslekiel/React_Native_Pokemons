@@ -1,19 +1,20 @@
-import React, {useEffect, useState} from 'react';
-import PokemonCard from '../../components/PokemonCard/PokemonCard';
+import React, { useEffect, useState } from 'react';
+import type {
+  ListRenderItem } from 'react-native';
 import {
-  ListRenderItem,
   FlatList,
   View,
   ActivityIndicator,
   SafeAreaView,
 } from 'react-native';
-import type {SinglePokemonType} from '../../types';
-import {pokemonApi} from '../../api/pokemonApi';
+import PokemonCard from '../../components/PokemonCard/PokemonCard';
+import type { SinglePokemonType } from '../../types';
+import { pokemonApi } from '../../api/pokemonApi';
 import PokemonsListStyles from './PokemonList.styles';
 
 const limit = 8;
 
-const renderItem: ListRenderItem<SinglePokemonType> = ({item}) => (
+const renderItem: ListRenderItem<SinglePokemonType> = ({ item }) => (
   <PokemonCard id={item.id} />
 );
 
@@ -32,12 +33,14 @@ const PokemonsList = () => {
           i < limit * (currentPage - 1) + limit + 1;
           i++
         ) {
+          // eslint-disable-next-line no-await-in-loop
           const res = await pokemonApi.getPokemonData(i);
-          setPokemonList(prev => [...prev, res.data]);
+          setPokemonList((prev) => [...prev, res.data]);
         }
         setIsLoading(false);
         setIsFirstLoading(false);
       } catch (error) {
+        // eslint-disable-next-line no-console
         console.log(error);
       }
     })();
@@ -65,7 +68,7 @@ const PokemonsList = () => {
         data={pokemonsList}
         numColumns={2}
         renderItem={renderItem}
-        keyExtractor={item => item.name}
+        keyExtractor={(item) => item.name}
         contentContainerStyle={PokemonsListStyles.container}
         refreshing={isLoading}
         onEndReached={loadMorePokemons}

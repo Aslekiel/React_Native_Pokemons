@@ -1,6 +1,6 @@
 import React from 'react';
-import {View} from 'react-native';
-import {PokemonStatsType} from '../../types';
+import { View } from 'react-native';
+import type { PokemonStatsType } from '../../types';
 import CustomText from '../CustomText/CustomText';
 import PokemonStatsStyles from './PokemonStats.styles';
 
@@ -8,14 +8,15 @@ type PropsType = {
   stats: PokemonStatsType[];
 };
 
-const PokemonStats: React.FC<PropsType> = ({stats}) => {
+const PokemonStats: React.FC<PropsType> = ({ stats }) => {
   return (
     <View style={PokemonStatsStyles.wrapper}>
       {stats.map((stat, index) => {
         return (
           <CustomText key={index}>{`${
             stat.stat.name[0].toLocaleUpperCase() + stat.stat.name.slice(1)
-          }: ${stat.base_stat}`}</CustomText>
+          }: ${stat.base_stat}`}
+          </CustomText>
         );
       })}
     </View>

@@ -1,17 +1,24 @@
-/* eslint-disable global-require */
+import React, { useState } from 'react';
+import { SafeAreaView, ScrollView, Image, View } from 'react-native';
+
 import type { NavigationProp } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
-import React, { useState } from 'react';
+
 import Toast from 'react-native-toast-message';
-import { SafeAreaView, ScrollView, Image, View } from 'react-native';
-import type { RootParamsType } from '../../types';
-import { userApi } from '../../api/userApi';
-import { useAppDispatch } from '../../store/hooks/hooks';
-import { setUser } from '../../store/user/user';
-import CustomButton from '../../components/CustomButton/CustomButton';
+
+import type { RootParamsType } from 'src/types';
+
+import CustomButton from 'src/components/CustomButton';
+import CustomInput from 'src/components/CustomInput';
+import CustomText from 'src/components/CustomText';
+
+import pokemonLogoImage from 'src/assets/pokemon-logo.png';
+
+import { useAppDispatch } from 'src/store/hooks/hooks';
+import { userApi } from 'src/api/userApi';
+import { setUser } from 'src/store/user/user';
+
 import SignUpStyles from './SignUp.styles';
-import CustomInput from '../../components/CustomInput/CustomInput';
-import CustomText from '../../components/CustomText/CustomText';
 
 const SignUp = () => {
   const [signUpState, setSignUpState] = useState({
@@ -24,7 +31,7 @@ const SignUp = () => {
 
   const dispatch = useAppDispatch();
 
-  const onChangeText = (key: string, value: string) => {
+  const onChangeText = (key: keyof typeof signUpState, value: string) => {
     setSignUpState({ ...signUpState, [key]: value });
   };
 
@@ -66,21 +73,24 @@ const SignUp = () => {
     <SafeAreaView style={SignUpStyles.container}>
       <ScrollView style={SignUpStyles.wrapper}>
         <Image
-          source={require('../../assets/pokemon-logo.png')}
+          source={pokemonLogoImage}
           style={SignUpStyles.logo}
         />
+
         <View style={SignUpStyles.inputsWrapper}>
           <CustomInput
             placeholder="Username"
             value={signUpState.username}
             onChangeText={(value) => onChangeText('username', value)}
           />
+
           <CustomInput
             placeholder="Password"
             secureTextEntry
             value={signUpState.password}
             onChangeText={(value) => onChangeText('password', value)}
           />
+
           <CustomInput
             placeholder="Repeat password"
             secureTextEntry
@@ -88,16 +98,20 @@ const SignUp = () => {
             onChangeText={(value) => onChangeText('repeatedPassword', value)}
           />
         </View>
+
         <View style={SignUpStyles.buttonsWrapper}>
           <CustomButton title="Submit" onPress={onSubmit} />
+
           <CustomText style={SignUpStyles.title}>
             Already registered?
           </CustomText>
+
           <CustomButton
             title="Log In"
             onPress={() => navigation.navigate('Login')}
           />
         </View>
+
       </ScrollView>
     </SafeAreaView>
   );

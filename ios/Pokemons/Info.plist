@@ -75,6 +75,11 @@
 		<string>PTSans-Italic.ttf</string>
 		<string>PTSans-Regular.ttf</string>
 	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>BootSplash</string>
 	<key>UIMainStoryboardFile</key>

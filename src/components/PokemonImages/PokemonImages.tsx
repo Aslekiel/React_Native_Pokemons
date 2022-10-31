@@ -1,6 +1,8 @@
 import React from 'react';
 import { Image, View } from 'react-native';
-import CustomText from '../CustomText/CustomText';
+
+import CustomText from 'src/components/CustomText';
+
 import PokemonImagesStyles from './PokemonImages.styles';
 
 type PropsType = {

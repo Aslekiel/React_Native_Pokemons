@@ -1,6 +1,4 @@
 /* eslint-disable no-unsafe-optional-chaining */
-import type { NavigationProp } from '@react-navigation/native';
-import { useNavigation } from '@react-navigation/native';
 import React, { memo, useEffect, useMemo, useState } from 'react';
 import {
   Image,
@@ -8,9 +6,16 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import { pokemonApi } from '../../api/pokemonApi';
-import type { RootParamsType, SinglePokemonType } from '../../types';
-import CustomText from '../CustomText/CustomText';
+
+import type { NavigationProp } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
+
+import CustomText from 'src/components/CustomText';
+
+import pokemonApi from 'src/api/pokemonApi';
+
+import type { RootParamsType, SinglePokemonType } from 'src/types';
+
 import PokemonCardStyles from './PokemonCard.styles';
 
 type PropsType = {
@@ -58,22 +63,28 @@ const PokemonCard: React.FC<PropsType> = ({ id }) => {
             }}
             style={PokemonCardStyles.logo}
           />
+
           <View>
             <CustomText
               style={
                 PokemonCardStyles.text
               }
->{`Name: ${pokemonName}`}
+            >
+            {`Name: ${pokemonName}`}
             </CustomText>
+
             <CustomText
               style={
                 PokemonCardStyles.text
               }
->{`Weight: ${pokemonData?.weight}`}
+            >
+            {`Weight: ${pokemonData?.weight}`}
             </CustomText>
+
             <CustomText style={PokemonCardStyles.text}>
               {`Height: ${pokemonData?.height}`}
             </CustomText>
+
             <CustomText style={PokemonCardStyles.text}>
               {`Base experience: ${pokemonData?.base_experience}`}
             </CustomText>

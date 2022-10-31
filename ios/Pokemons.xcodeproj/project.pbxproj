@@ -36,6 +36,7 @@
 		7A324C23290A6E3F00D0E5A9 /* PressStart2P-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7A324C1C290A6E3F00D0E5A9 /* PressStart2P-Regular.ttf */; };
 		7A324C24290A6E3F00D0E5A9 /* FuzzyBubbles-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7A324C1D290A6E3F00D0E5A9 /* FuzzyBubbles-Bold.ttf */; };
 		7A324C25290A6E3F00D0E5A9 /* PTSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7A324C1E290A6E3F00D0E5A9 /* PTSans-Italic.ttf */; };
+		7A805319290BF083001F6271 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		7AB058BD290BADC500D641F0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7AB058BC290BADC500D641F0 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -88,6 +89,7 @@
 		7A324C1C290A6E3F00D0E5A9 /* PressStart2P-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PressStart2P-Regular.ttf"; sourceTree = "<group>"; };
 		7A324C1D290A6E3F00D0E5A9 /* FuzzyBubbles-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FuzzyBubbles-Bold.ttf"; sourceTree = "<group>"; };
 		7A324C1E290A6E3F00D0E5A9 /* PTSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PTSans-Italic.ttf"; sourceTree = "<group>"; };
+		7A80531A290C11EC001F6271 /* Pokemons.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Pokemons.entitlements; path = Pokemons/Pokemons.entitlements; sourceTree = "<group>"; };
 		7AB058BC290BADC500D641F0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Pokemons/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-Pokemons-PokemonsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pokemons-PokemonsTests.release.xcconfig"; path = "Target Support Files/Pods-Pokemons-PokemonsTests/Pods-Pokemons-PokemonsTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 		13B07FAE1A68108700A75B9A /* Pokemons */ = {
 			isa = PBXGroup;
 			children = (
+				7A80531A290C11EC001F6271 /* Pokemons.entitlements */,
 				7A1711DB2909419900B699E9 /* Fonts */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				7A17120A290963D700B699E9 /* BootSplash.storyboard */,
@@ -327,6 +330,7 @@
 				7A1711F52909420100B699E9 /* Octicons.ttf in Resources */,
 				7A1711ED2909420000B699E9 /* FontAwesome5_Regular.ttf in Resources */,
 				7AB058BD290BADC500D641F0 /* GoogleService-Info.plist in Resources */,
+				7A805319290BF083001F6271 /* Images.xcassets in Resources */,
 				7A1711FA2909420100B699E9 /* Feather.ttf in Resources */,
 				7A17120B290963D700B699E9 /* BootSplash.storyboard in Resources */,
 				7A1711F92909420100B699E9 /* AntDesign.ttf in Resources */,
@@ -604,6 +608,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Pokemons/Pokemons.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Pokemons/Info.plist;
@@ -632,6 +637,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Pokemons/Pokemons.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = Pokemons/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.5;

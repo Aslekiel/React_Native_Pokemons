@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import type {
-  ListRenderItem } from 'react-native';
+import type { ListRenderItem } from 'react-native';
 import {
   FlatList,
   View,
   ActivityIndicator,
   SafeAreaView,
 } from 'react-native';
-import PokemonCard from '../../components/PokemonCard/PokemonCard';
-import type { SinglePokemonType } from '../../types';
-import { pokemonApi } from '../../api/pokemonApi';
+
+import type { SinglePokemonType } from 'src/types';
+
+import PokemonCard from 'src/components/PokemonCard';
+import pokemonApi from 'src/api/pokemonApi';
+
 import PokemonsListStyles from './PokemonList.styles';
 
 const limit = 8;

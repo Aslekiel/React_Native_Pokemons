@@ -1,10 +1,15 @@
-import type { RouteProp } from '@react-navigation/native';
-import { useRoute } from '@react-navigation/native';
 import React from 'react';
 import { Image, SafeAreaView, View, ScrollView } from 'react-native';
+
+import type { RouteProp } from '@react-navigation/native';
+import { useRoute } from '@react-navigation/native';
+
 import { SvgUri } from 'react-native-svg';
-import CustomText from '../../components/CustomText/CustomText';
+
+import CustomText from 'src/components/CustomText/CustomText';
+
 import type { SpritesType } from '../../types';
+
 import AllPokemonImagesStyles from './AllPokemonImages.styles';
 
 type ParamListType = {

@@ -1,16 +1,20 @@
-/* eslint-disable global-require */
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react';
-import { View, Image } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import CustomButton from '../../components/CustomButton/CustomButton';
-import CustomText from '../../components/CustomText/CustomText';
-import { useAppDispatch, useAppSelector } from '../../store/hooks/hooks';
-import { setUser } from '../../store/user/user';
+import { SafeAreaView, View, Image } from 'react-native';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import { useAppDispatch, useAppSelector } from 'src/store/hooks/hooks';
+import { setUser } from 'src/store/user/user';
+
+import CustomText from 'src/components/CustomText';
+import CustomButton from 'src/components/CustomButton';
+
+import emptyAvatar from 'src/assets/emptyAvatar.png';
+
 import UserProfilesStyles from './UserProfile.styles';
 
 const UserProfile = () => {
-  const { user } = useAppSelector((state) => state.user);
+  const user = useAppSelector((state) => state.user.user);
 
   const dispatch = useAppDispatch();
 
@@ -26,20 +30,26 @@ const UserProfile = () => {
   return (
     <SafeAreaView style={UserProfilesStyles.container}>
       <View style={UserProfilesStyles.infoWrapper}>
-        <CustomText style={UserProfilesStyles.mainTitle}>My Profile</CustomText>
+        <CustomText style={UserProfilesStyles.mainTitle}>
+          My Profile
+        </CustomText>
+
         <Image
           style={UserProfilesStyles.avatar}
-          source={require('../../assets/emptyAvatar.png')}
+          source={emptyAvatar}
         />
+
         <CustomText style={UserProfilesStyles.username}>
           {user?.username}
         </CustomText>
+
         {user?.fullname && (
           <CustomText style={UserProfilesStyles.username}>
             {user?.fullname}
           </CustomText>
         )}
       </View>
+
       <View style={UserProfilesStyles.buttonContainer}>
         <CustomButton title="Quit" onPress={onPressQuit} />
       </View>

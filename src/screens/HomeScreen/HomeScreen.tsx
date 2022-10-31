@@ -1,11 +1,17 @@
-/* eslint-disable global-require */
 /* eslint-disable no-unsafe-optional-chaining */
 import React, { useEffect, useState } from 'react';
 import { View, Image, SafeAreaView, ScrollView } from 'react-native';
-import { pokemonApi } from '../../api/pokemonApi';
-import CustomButton from '../../components/CustomButton/CustomButton';
-import CustomText from '../../components/CustomText/CustomText';
-import type { SinglePokemonType } from '../../types';
+
+import CustomButton from 'src/components/CustomButton';
+import CustomText from 'src/components/CustomText';
+
+import pokemonApi from 'src/api/pokemonApi';
+
+import type { SinglePokemonType } from 'src/types';
+
+import pokemonLogoImage from 'src/assets/pokemon-logo.png';
+import pokeballImage from 'src/assets/pokeball.png';
+
 import HomeScreenStyles from './HomeScreen.styles';
 
 const HomeScreen = () => {
@@ -34,7 +40,7 @@ const HomeScreen = () => {
     <SafeAreaView style={HomeScreenStyles.container}>
       <ScrollView contentContainerStyle={HomeScreenStyles.contentContainer}>
         <Image
-          source={require('../../assets/pokemon-logo.png')}
+          source={pokemonLogoImage}
           style={HomeScreenStyles.logo}
         />
         <CustomText style={HomeScreenStyles.text}>
@@ -61,7 +67,7 @@ const HomeScreen = () => {
           <View style={HomeScreenStyles.pokemonWrapper}>
             <Image
               style={HomeScreenStyles.pokemonImage}
-              source={require('../../assets/pokeball.png')}
+              source={pokeballImage}
             />
           </View>
         )}

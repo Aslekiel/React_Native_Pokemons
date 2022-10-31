@@ -1,4 +1,7 @@
 /* eslint-disable no-unsafe-optional-chaining */
+import React, { useEffect, useMemo, useState } from 'react';
+import { ScrollView, SafeAreaView, View } from 'react-native';
+
 import type {
   NavigationProp,
   RouteProp } from '@react-navigation/native';
@@ -6,17 +9,18 @@ import {
   useNavigation,
   useRoute,
 } from '@react-navigation/native';
-import React, { useEffect, useMemo, useState } from 'react';
-import { ScrollView, SafeAreaView, View } from 'react-native';
 
-import { pokemonApi } from '../../api/pokemonApi';
-import CustomButton from '../../components/CustomButton/CustomButton';
-import type { RootParamsType, SinglePokemonType } from '../../types';
-import PokemonAbilities from '../../components/PokemonAbilities/PokemonAbilities';
-import PokemonImages from '../../components/PokemonImages/PokemonImages';
-import PokemonStats from '../../components/PokemonStats/PokemonStats';
+import CustomButton from 'src/components/CustomButton';
+import CustomText from 'src/components/CustomText';
+import PokemonAbilities from 'src/components/PokemonAbilities';
+import PokemonImages from 'src/components/PokemonImages';
+import PokemonStats from 'src/components/PokemonStats';
+
+import type { RootParamsType, SinglePokemonType } from 'src/types';
+
+import pokemonApi from 'src/api/pokemonApi';
+
 import SinglePokemonPageStyles from './SinglePokemonPage.styles';
-import CustomText from '../../components/CustomText/CustomText';
 
 type ParamListType = {
   SinglePokemonPage: {

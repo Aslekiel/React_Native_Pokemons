@@ -1,7 +1,7 @@
 /* eslint-disable no-async-promise-executor */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { nanoid } from '@reduxjs/toolkit';
-import type { SingleUserType, UserType } from '../types';
+import type { SingleUserType, UserType } from 'src/types';
 
 type UserDataType = {
   username: string;

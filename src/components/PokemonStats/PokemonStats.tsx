@@ -1,7 +1,10 @@
 import React from 'react';
 import { View } from 'react-native';
-import type { PokemonStatsType } from '../../types';
-import CustomText from '../CustomText/CustomText';
+
+import type { PokemonStatsType } from 'src/types';
+
+import CustomText from 'src/components/CustomText';
+
 import PokemonStatsStyles from './PokemonStats.styles';
 
 type PropsType = {

@@ -1,17 +1,24 @@
-/* eslint-disable global-require */
+import React, { useState } from 'react';
+import { SafeAreaView, ScrollView, Image, View } from 'react-native';
+
 import type { NavigationProp } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
-import React, { useState } from 'react';
+
 import Toast from 'react-native-toast-message';
-import { SafeAreaView, Image, View, ScrollView } from 'react-native';
-import { useAppDispatch } from '../../store/hooks/hooks';
-import type { RootParamsType } from '../../types';
-import { userApi } from '../../api/userApi';
-import { setUser } from '../../store/user/user';
-import CustomButton from '../../components/CustomButton/CustomButton';
+
+import type { RootParamsType } from 'src/types';
+
+import CustomButton from 'src/components/CustomButton';
+import CustomInput from 'src/components/CustomInput';
+import CustomText from 'src/components/CustomText';
+
+import pokemonLogoImage from 'src/assets/pokemon-logo.png';
+
+import { useAppDispatch } from 'src/store/hooks/hooks';
+import { userApi } from 'src/api/userApi';
+import { setUser } from 'src/store/user/user';
+
 import LogInStyles from './LogIn.styles';
-import CustomInput from '../../components/CustomInput/CustomInput';
-import CustomText from '../../components/CustomText/CustomText';
 
 const LogIn = () => {
   const [logInState, setLogInState] = useState({
@@ -53,7 +60,7 @@ const LogIn = () => {
     <SafeAreaView style={LogInStyles.container}>
       <ScrollView style={LogInStyles.wrapper}>
         <Image
-          source={require('../../assets/pokemon-logo.png')}
+          source={pokemonLogoImage}
           style={LogInStyles.logo}
         />
         <View style={LogInStyles.inputsWrapper}>

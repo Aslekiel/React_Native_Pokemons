@@ -14,9 +14,9 @@ import CustomText from 'src/components/CustomText';
 
 import pokemonLogoImage from 'src/assets/pokemon-logo.png';
 
-import { useAppDispatch } from 'src/store/hooks/hooks';
+import { useAppDispatch } from 'src/store/hooks';
 import { userApi } from 'src/api/userApi';
-import { setUser } from 'src/store/user/user';
+import { setUser } from 'src/store/user';
 
 import LogInStyles from './LogIn.styles';
 

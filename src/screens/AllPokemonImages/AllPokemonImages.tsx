@@ -8,7 +8,7 @@ import { SvgUri } from 'react-native-svg';
 
 import CustomText from 'src/components/CustomText/CustomText';
 
-import type { SpritesType } from '../../types';
+import type { SpritesType } from 'src/types';
 
 import AllPokemonImagesStyles from './AllPokemonImages.styles';
 

@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
 // import ProfileIcon from 'src/assets/pokemon_trainer.svg';
 // import PokeballIcon from 'src/assets/pokeball_icon.svg';
 // import HomeIcon from 'src/assets/home.svg';
+
 import type { BottomTabParamListType } from 'src/types';
 
-import HomeScreen from '../screens/HomeScreen/HomeScreen';
+import HomeScreen from 'src/screens/HomeScreen/HomeScreen';
+import UserProfile from 'src/screens/UserProfile/UserProfile';
+
+import { userApi } from 'src/api/userApi';
+import { useAppDispatch, useAppSelector } from 'src/store/hooks';
+
+import { setUser } from 'src/store/user';
+
 import PokemonsListNavigation from './PokemonsListNavigation';
 import LogInSignUpNavigation from './LogInSignUpNavigation';
-import UserProfile from '../screens/UserProfile/UserProfile';
-import { useAppDispatch, useAppSelector } from '../store/hooks/hooks';
-import { userApi } from '../api/userApi';
-import { setUser } from '../store/user/user';
 
 const Tab = createBottomTabNavigator<BottomTabParamListType>();
 

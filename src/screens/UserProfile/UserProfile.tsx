@@ -3,8 +3,8 @@ import { SafeAreaView, View, Image } from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { useAppDispatch, useAppSelector } from 'src/store/hooks/hooks';
-import { setUser } from 'src/store/user/user';
+import { useAppDispatch, useAppSelector } from 'src/store/hooks';
+import { setUser } from 'src/store/user';
 
 import CustomText from 'src/components/CustomText';
 import CustomButton from 'src/components/CustomButton';

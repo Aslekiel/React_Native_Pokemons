@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 
 import Core from './src/core/Core';
 
-import store from './src/store/store';
+import store from './src/store';
 
 const App = () => {
   return (

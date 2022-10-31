@@ -5,6 +5,7 @@ const UserProfilesStyles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     padding: 10,
+    marginBottom: 10,
   },
   infoWrapper: {
     display: 'flex',

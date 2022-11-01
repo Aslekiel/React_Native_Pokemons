@@ -1,14 +1,12 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import HomeIcon from 'src/assets/home.svg';
-import ProfileIcon from 'src/assets/pokemon_trainer.svg';
-import PokeballIcon from 'src/assets/pokeball_icon.svg';
-
 import type { BottomTabParamListType } from 'src/types';
 
 import HomeScreen from 'src/screens/HomeScreen/HomeScreen';
 import UserProfile from 'src/screens/UserProfile/UserProfile';
+
+import images from 'src/constants/images';
 
 import PokemonsListNavigation from './PokemonsListNavigation';
 
@@ -22,7 +20,7 @@ const TabNavigation = () => {
         component={HomeScreen}
         options={{
           headerShown: false,
-          tabBarIcon: () => <HomeIcon width={24} height={24} />,
+          tabBarIcon: () => <images.homeIcon width={24} height={24} />,
         }}
       />
       <Tab.Screen
@@ -30,7 +28,7 @@ const TabNavigation = () => {
         component={PokemonsListNavigation}
         options={{
           headerShown: false,
-          tabBarIcon: () => <PokeballIcon width={24} height={24} />,
+          tabBarIcon: () => <images.pokeballIcon width={24} height={24} />,
         }}
       />
       <Tab.Screen
@@ -38,7 +36,7 @@ const TabNavigation = () => {
         component={UserProfile}
         options={{
           headerShown: false,
-          tabBarIcon: () => <ProfileIcon width={24} height={24} />,
+          tabBarIcon: () => <images.profileIcon width={24} height={24} />,
         }}
       />
     </Tab.Navigator>

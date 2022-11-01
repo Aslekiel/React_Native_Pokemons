@@ -6,9 +6,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import CustomText from 'src/components/CustomText';
 import CustomButton from 'src/components/CustomButton';
 
-import emptyAvatar from 'src/assets/emptyAvatar.png';
-
 import useCurrentUser from 'src/hooks/useCurrentUser';
+
+import images from 'src/constants/images';
 
 import UserProfilesStyles from './UserProfile.styles';
 
@@ -33,7 +33,7 @@ const UserProfile = () => {
 
         <Image
           style={UserProfilesStyles.avatar}
-          source={emptyAvatar}
+          source={images.emptyAvatar}
         />
 
         <CustomText style={UserProfilesStyles.username}>

@@ -5,8 +5,7 @@ import { View, Image, SafeAreaView, ScrollView } from 'react-native';
 import CustomButton from 'src/components/CustomButton';
 import CustomText from 'src/components/CustomText';
 
-import pokemonLogoImage from 'src/assets/pokemon-logo.png';
-import pokeballImage from 'src/assets/pokeball.png';
+import images from 'src/constants/images';
 
 import usePokemons from 'src/hooks/usePokemons';
 import HomeScreenStyles from './HomeScreen.styles';
@@ -36,7 +35,7 @@ const HomeScreen = () => {
     <SafeAreaView style={HomeScreenStyles.container}>
       <ScrollView contentContainerStyle={HomeScreenStyles.contentContainer}>
         <Image
-          source={pokemonLogoImage}
+          source={images.pokemonLogoImage}
           style={HomeScreenStyles.logo}
         />
         <CustomText style={HomeScreenStyles.text}>
@@ -63,7 +62,7 @@ const HomeScreen = () => {
           <View style={HomeScreenStyles.pokemonWrapper}>
             <Image
               style={HomeScreenStyles.pokemonImage}
-              source={pokeballImage}
+              source={images.pokeballImage}
             />
           </View>
         )}

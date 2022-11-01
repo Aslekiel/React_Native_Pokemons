@@ -3,12 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { UserType } from '../../types';
 
 const getInitialState = (): UserType => ({
-  user: {
-    id: '',
-    fullname: '',
-    username: '',
-    avatar: '',
-  },
+  user: null,
   token: '',
 });
 

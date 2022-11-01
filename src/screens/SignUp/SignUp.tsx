@@ -10,7 +10,7 @@ import CustomButton from 'src/components/CustomButton';
 import CustomInput from 'src/components/CustomInput';
 import CustomText from 'src/components/CustomText';
 
-import pokemonLogoImage from 'src/assets/pokemon-logo.png';
+import images from 'src/constants/images';
 
 import useCurrentUser from 'src/hooks/useCurrentUser';
 
@@ -60,7 +60,7 @@ const SignUp = () => {
     <SafeAreaView style={SignUpStyles.container}>
       <ScrollView style={SignUpStyles.wrapper}>
         <Image
-          source={pokemonLogoImage}
+          source={images.pokemonLogoImage}
           style={SignUpStyles.logo}
         />
 

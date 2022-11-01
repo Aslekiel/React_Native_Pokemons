@@ -8,35 +8,14 @@ import RNBootSplash from 'react-native-bootsplash';
 import Toast from 'react-native-toast-message';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import TabNavigation from 'src/navigation/TabNavigation';
+import requestUserPermission from 'src/utils/requestUserPermission';
+import Navigation from 'src/navigation/Navigation';
 
 const Core = () => {
-  const checkToken = async () => {
-    const fcmToken = await messaging().getToken();
-    if (fcmToken) {
-      // eslint-disable-next-line no-console
-      console.log(fcmToken);
-    }
-  };
-
-  checkToken();
-
-  async function requestUserPermission() {
-    const authStatus = await messaging().requestPermission();
-    const enabled =
-      authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
-      authStatus === messaging.AuthorizationStatus.PROVISIONAL;
-
-    if (enabled) {
-      // eslint-disable-next-line no-console
-      console.log('Authorization status:', authStatus);
-    }
-  }
-
   requestUserPermission();
 
   useEffect(() => {
-    AsyncStorage.getItem('token').finally(() => {
+    AsyncStorage.getItem('user').finally(() => {
       return RNBootSplash.hide({ fade: true });
     });
 
@@ -51,7 +30,7 @@ const Core = () => {
 
   return (
     <NavigationContainer onReady={RNBootSplash.hide}>
-      <TabNavigation />
+      <Navigation />
 
       <Toast />
     </NavigationContainer>

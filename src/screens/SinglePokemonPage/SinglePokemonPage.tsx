@@ -1,5 +1,5 @@
 /* eslint-disable no-unsafe-optional-chaining */
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { ScrollView, SafeAreaView, View } from 'react-native';
 
 import type {
@@ -16,10 +16,9 @@ import PokemonAbilities from 'src/components/PokemonAbilities';
 import PokemonImages from 'src/components/PokemonImages';
 import PokemonStats from 'src/components/PokemonStats';
 
-import type { RootParamsType, SinglePokemonType } from 'src/types';
+import type { RootParamsType } from 'src/types';
 
-import pokemonApi from 'src/api/pokemonApi';
-
+import usePokemons from 'src/hooks/usePokemons';
 import SinglePokemonPageStyles from './SinglePokemonPage.styles';
 
 type ParamListType = {
@@ -29,11 +28,12 @@ type ParamListType = {
 };
 
 const SinglePokemonPage = () => {
-  const [pokemonData, setPokemonData] = useState<SinglePokemonType>();
+  const { pokemonData, getPokemon } = usePokemons();
+
   const route = useRoute<RouteProp<ParamListType, 'SinglePokemonPage'>>();
+  const { id } = route.params;
 
   const navigation = useNavigation<NavigationProp<RootParamsType>>();
-  const { id } = route.params;
 
   const pokemonName = useMemo(() => {
     if (pokemonData) {
@@ -46,13 +46,13 @@ const SinglePokemonPage = () => {
   useEffect(() => {
     (async () => {
       try {
-        const res = await pokemonApi.getPokemonData(Number(id));
-        setPokemonData(res.data);
+        await getPokemon(Number(id));
       } catch (error) {
         // eslint-disable-next-line no-console
         console.log(error);
       }
     })();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   return (
@@ -64,12 +64,14 @@ const SinglePokemonPage = () => {
             frontImage={pokemonData?.sprites.front_default}
             backImage={pokemonData?.sprites.back_default}
           />
+
           <PokemonImages
             title="Tiny pokemon"
             frontImage={pokemonData?.sprites.front_shiny}
             backImage={pokemonData?.sprites.back_shiny}
           />
         </View>
+
         <View style={SinglePokemonPageStyles.info}>
           <CustomText>{`Name: ${pokemonName}`}</CustomText>
           <CustomText>{`Weight: ${pokemonData?.weight}`}</CustomText>
@@ -78,12 +80,15 @@ const SinglePokemonPage = () => {
             {`Base experience: ${pokemonData?.base_experience}`}
           </CustomText>
         </View>
+
         <CustomText style={SinglePokemonPageStyles.text}>Stats</CustomText>
+
         {pokemonData?.stats && <PokemonStats stats={pokemonData.stats} />}
+
         <CustomText style={SinglePokemonPageStyles.text}>Abilities</CustomText>
-        {pokemonData?.abilities && (
-          <PokemonAbilities abilities={pokemonData?.abilities} />
-        )}
+
+        {pokemonData?.abilities && <PokemonAbilities abilities={pokemonData?.abilities} />}
+
         <View style={SinglePokemonPageStyles.buttonWrapper}>
           <CustomButton
             title="More Pokemon Images"

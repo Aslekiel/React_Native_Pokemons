@@ -5,31 +5,27 @@ import { View, Image, SafeAreaView, ScrollView } from 'react-native';
 import CustomButton from 'src/components/CustomButton';
 import CustomText from 'src/components/CustomText';
 
-import pokemonApi from 'src/api/pokemonApi';
-
-import type { SinglePokemonType } from 'src/types';
-
 import pokemonLogoImage from 'src/assets/pokemon-logo.png';
 import pokeballImage from 'src/assets/pokeball.png';
 
+import usePokemons from 'src/hooks/usePokemons';
 import HomeScreenStyles from './HomeScreen.styles';
 
 const HomeScreen = () => {
-  const [pokemon, setPokemon] = useState<SinglePokemonType>();
   const [pokemonId, setPokemonId] = useState<number>();
-
+  const { pokemonData, getPokemon } = usePokemons();
   useEffect(() => {
     (async () => {
       try {
         if (pokemonId) {
-          const res = await pokemonApi.getPokemonData(pokemonId);
-          setPokemon(res.data);
+          await getPokemon(pokemonId);
         }
       } catch (error) {
         // eslint-disable-next-line no-console
         console.log(error);
       }
     })();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pokemonId]);
 
   const onPressRandom = () => {
@@ -51,16 +47,16 @@ const HomeScreen = () => {
           inhabit the Pokémon universe, with untold numbers waiting to be
           discovered!
         </CustomText>
-        {pokemon ? (
+        {pokemonData ? (
           <View style={HomeScreenStyles.pokemonWrapper}>
             <Image
               style={HomeScreenStyles.pokemonImage}
               source={{
-                uri: pokemon?.sprites.other['official-artwork'].front_default,
+                uri: pokemonData?.sprites.other['official-artwork'].front_default,
               }}
             />
             <CustomText>
-              {pokemon?.name[0].toLocaleUpperCase() + pokemon?.name.slice(1)}
+              {pokemonData?.name[0].toLocaleUpperCase() + pokemonData?.name.slice(1)}
             </CustomText>
           </View>
         ) : (

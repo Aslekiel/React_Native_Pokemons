@@ -10,7 +10,8 @@ import {
 import type { SinglePokemonType } from 'src/types';
 
 import PokemonCard from 'src/components/PokemonCard';
-import pokemonApi from 'src/api/pokemonApi';
+
+import usePokemons from 'src/hooks/usePokemons';
 
 import PokemonsListStyles from './PokemonList.styles';
 
@@ -21,7 +22,8 @@ const renderItem: ListRenderItem<SinglePokemonType> = ({ item }) => (
 );
 
 const PokemonsList = () => {
-  const [pokemonsList, setPokemonList] = useState<SinglePokemonType[]>([]);
+  // const [pokemonsList, setPokemonList] = useState<SinglePokemonType[]>([]);
+  const { pokemonsList, getPokemonsList } = usePokemons();
   const [currentPage, setCurrentPage] = useState(1);
   const [isFirstLoading, setIsFirstLoading] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -36,8 +38,7 @@ const PokemonsList = () => {
           i++
         ) {
           // eslint-disable-next-line no-await-in-loop
-          const res = await pokemonApi.getPokemonData(i);
-          setPokemonList((prev) => [...prev, res.data]);
+          await getPokemonsList(i);
         }
         setIsLoading(false);
         setIsFirstLoading(false);
@@ -46,7 +47,7 @@ const PokemonsList = () => {
         console.log(error);
       }
     })();
-  }, [currentPage]);
+  }, [currentPage, getPokemonsList]);
 
   const loadMorePokemons = () => {
     setCurrentPage(currentPage + 1);

@@ -7,6 +7,6 @@
     /* Completeness */
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
-  "include": ["src", "App.tsx", "declarations.d.ts"],
+  "include": ["src", "App.tsx", "declarations.d.ts", "customTransformer.ts"],
   "exclude": ["node_modules", "babel.config.js", "metro.config.js", "jest.config.js"]
 }

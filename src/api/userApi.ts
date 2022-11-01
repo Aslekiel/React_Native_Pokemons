@@ -3,6 +3,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { nanoid } from '@reduxjs/toolkit';
 import type { SingleUserType, UserType } from 'src/types';
 
+import getUsersFromStorage from 'src/utils/getUsersFromStorege';
+
 type UserDataType = {
   username: string;
   password: string;
@@ -10,77 +12,73 @@ type UserDataType = {
 
 const logIn = async (userData: UserDataType) => {
   const user: UserType = await new Promise(async (res) => {
-    const id = AsyncStorage.getItem('id');
-    const username = AsyncStorage.getItem('username');
-    const password = AsyncStorage.getItem('password');
+    const users = await AsyncStorage.getItem('users');
+    const currentUser = users &&
+    JSON.parse(users).filter((user: SingleUserType) => user.username === userData.username);
 
-    const userValues = await Promise.all([id, username, password]);
-    const token = await AsyncStorage.getItem('token');
-
-    const findedUser = userValues
+    const findedUser = currentUser
       ? {
-        id: userValues[0],
-        username: userValues[1],
-        password: userValues[2],
+        id: currentUser[0].id,
+        username: currentUser[0].username,
+        password: currentUser[0].password,
       }
       : null;
 
-    if (
-      findedUser?.username === userData.username &&
-      findedUser?.password === userData.password &&
-      findedUser.id &&
-      token
-    ) {
-      const registeredUser: SingleUserType = {
-        id: findedUser.id,
-        username: userData.username,
-      };
-      setTimeout(() => res({ user: registeredUser, token }), 500);
-    }
+    const registeredUser: SingleUserType = {
+      id: findedUser?.id,
+      username: userData.username,
+    };
+    setTimeout(() => res({ user: registeredUser, token: currentUser[0].token }), 500);
   });
+
   return user;
 };
 
 const signUp = async (userData: UserDataType) => {
   const user: UserType = await new Promise(async (res) => {
-    await Promise.all([
-      AsyncStorage.setItem('id', nanoid()),
-      AsyncStorage.setItem('username', userData.username),
-      AsyncStorage.setItem('password', userData.password),
-      AsyncStorage.setItem('token', nanoid()),
-    ]);
+    const userForDB = {
+      id: nanoid(),
+      username: userData.username,
+      password: userData.password,
+      token: nanoid(),
+    };
 
-    const id = AsyncStorage.getItem('id');
-    const username = AsyncStorage.getItem('username');
+    await AsyncStorage.setItem('user', JSON.stringify(userForDB));
 
-    const newUserData = await Promise.all([id, username]);
-    const token = await AsyncStorage.getItem('token');
+    const usersFromDB = await getUsersFromStorage();
 
-    if (newUserData[0] && newUserData[1] && token) {
-      const newUser: SingleUserType = {
-        id: newUserData[0],
-        username: newUserData[1],
-      };
-      setTimeout(() => res({ user: newUser, token }), 500);
+    if (!usersFromDB) {
+      const newUsers = [];
+      newUsers.push(userForDB);
+      await AsyncStorage.setItem('users', JSON.stringify(newUsers));
+    } else {
+      usersFromDB.push(userForDB);
+      await AsyncStorage.setItem('users', JSON.stringify(usersFromDB));
     }
+
+    const users = await AsyncStorage.getItem('users');
+    const currentUser = users &&
+    JSON.parse(users).filter((user: SingleUserType) => user.username === userData.username);
+
+    const newUser: SingleUserType = {
+      id: currentUser[0].id,
+      username: currentUser[0].username,
+    };
+
+    setTimeout(() => res({ user: newUser, token: currentUser[0].token }), 500);
   });
   return user;
 };
 
 const checkUser = async () => {
   const user: UserType = await new Promise(async (res) => {
-    const id = AsyncStorage.getItem('id');
-    const username = AsyncStorage.getItem('username');
-
-    const userData = await Promise.all([id, username]);
-    const token = await AsyncStorage.getItem('token');
-
-    if (userData[0] && userData[1] && token) {
-      const currentUser: SingleUserType = {
-        id: userData[0],
-        username: userData[1],
+    const currentUser = await AsyncStorage.getItem('user');
+    if (currentUser) {
+      const userData = {
+        id: JSON.parse(currentUser).id,
+        username: JSON.parse(currentUser).username,
       };
-      setTimeout(() => res({ user: currentUser, token }), 500);
+      setTimeout(() => res({ user: userData, token: JSON.parse(currentUser).token }), 500);
     }
   });
 

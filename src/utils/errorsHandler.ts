@@ -52,14 +52,6 @@ const errorsHandler = async (props: UserDataType) => {
       return;
     }
 
-    if (currentUser.password !== props.password) {
-      notifierError({
-        title: 'Registration problems',
-        description: 'Invalid password',
-      });
-      return;
-    }
-
     if (props.password !== props.repeatedPassword) {
       notifierError({
         title: 'Registration problems',

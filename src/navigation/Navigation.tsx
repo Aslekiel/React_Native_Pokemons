@@ -17,7 +17,7 @@ const Navigation = () => {
   const [isSignedIn, setIsSignedIn] = useState(false);
   const { token } = useAppSelector((state) => state.user);
 
-  const { checkUser } = useCurrentUser(null);
+  const { user, checkUser } = useCurrentUser(null);
 
   useEffect(() => {
     (async () => {
@@ -55,7 +55,7 @@ const Navigation = () => {
   return (
     <NavigationContainer onReady={RNBootSplash.hide}>
       {
-        isSignedIn ? (
+        isSignedIn || user ? (
           <TabNavigation />
         ) : (
           <LogInSignUpNavigation />

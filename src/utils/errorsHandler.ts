@@ -16,11 +16,22 @@ const errorsHandler = async (props: UserDataType) => {
 
   const propsLength = Object.keys(props).length;
 
-  const currentUser = users.find(
+  const currentUser = users?.find(
     (user: SingleUserType) => user.username === props.username,
   );
 
   if (propsLength === 2) {
+    if (
+      !props.username.trim() ||
+      !props.password.trim()
+    ) {
+      notifierError({
+        title: 'Woops',
+        description: 'Not all registration fields are filled!',
+      });
+      return;
+    }
+
     if (!currentUser) {
       notifierError({
         title: 'Login problem',
@@ -44,6 +55,18 @@ const errorsHandler = async (props: UserDataType) => {
   }
 
   if (propsLength === 3) {
+    if (
+      !props.username.trim() ||
+      !props.password.trim() ||
+      !props.repeatedPassword?.trim()
+    ) {
+      notifierError({
+        title: 'Woops',
+        description: 'Not all registration fields are filled!',
+      });
+      return;
+    }
+
     if (currentUser) {
       notifierError({
         title: 'Registration problems',
@@ -65,23 +88,6 @@ const errorsHandler = async (props: UserDataType) => {
       description: 'Registration completed!',
     });
   }
-
-  if (
-    !props.username.trim() ||
-    !props.password.trim() ||
-    !props.repeatedPassword?.trim()
-  ) {
-    notifierError({
-      title: 'Woops',
-      description: 'Not all registration fields are filled!',
-    });
-    return;
-  }
-
-  return notifierSuccess({
-    title: 'Success',
-    description: 'Registration completed!',
-  });
 };
 
 export default errorsHandler;

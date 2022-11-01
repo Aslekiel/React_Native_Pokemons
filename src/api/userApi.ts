@@ -73,6 +73,7 @@ const signUp = async (userData: UserDataType) => {
 const checkUser = async () => {
   const user: UserType = await new Promise(async (res) => {
     const currentUser = await AsyncStorage.getItem('user');
+
     if (currentUser) {
       const userData = {
         id: JSON.parse(currentUser).id,

@@ -29,6 +29,7 @@ const useCurrentUser = (userData: UserDataType | null) => {
 
   const checkUser = async () => {
     const res = await userApi.checkUser();
+
     return dispatch(setUser(res));
   };
 

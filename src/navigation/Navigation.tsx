@@ -8,20 +8,20 @@ import messaging from '@react-native-firebase/messaging';
 import RNBootSplash from 'react-native-bootsplash';
 
 import useCurrentUser from 'src/hooks/useCurrentUser';
-import { useAppSelector } from 'src/store/hooks/hooks';
 
 import LogInSignUpNavigation from './LogInSignUpNavigation';
 import TabNavigation from './TabNavigation';
 
 const Navigation = () => {
   const [isSignedIn, setIsSignedIn] = useState(false);
-  const { token } = useAppSelector((state) => state.user);
 
-  const { user, checkUser } = useCurrentUser(null);
+  const { checkUser } = useCurrentUser(null);
 
   useEffect(() => {
-    (async () => {
-      if (!token) {
+    const init = async () => {
+      const userFromStorage = await AsyncStorage.getItem('user') || '';
+
+      if (!JSON.parse(userFromStorage).token) {
         setIsSignedIn(false);
         return;
       }
@@ -34,12 +34,9 @@ const Navigation = () => {
       } finally {
         setIsSignedIn(true);
       }
-    })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [token]);
+    };
 
-  useEffect(() => {
-    AsyncStorage.getItem('user').finally(() => {
+    init().finally(() => {
       return RNBootSplash.hide({ fade: true });
     });
 
@@ -50,12 +47,13 @@ const Navigation = () => {
     });
 
     return unsubscribe;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <NavigationContainer onReady={RNBootSplash.hide}>
+    <NavigationContainer>
       {
-        isSignedIn || user ? (
+        isSignedIn ? (
           <TabNavigation />
         ) : (
           <LogInSignUpNavigation />

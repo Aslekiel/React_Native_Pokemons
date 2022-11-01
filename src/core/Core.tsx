@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Toast from 'react-native-toast-message';
+import { NotifierWrapper } from 'react-native-notifier';
 
 import requestUserPermission from 'src/utils/requestUserPermission';
 import Navigation from 'src/navigation/Navigation';
@@ -8,11 +8,9 @@ import Navigation from 'src/navigation/Navigation';
 const Core = () => {
   requestUserPermission();
   return (
-    <>
+    <NotifierWrapper>
       <Navigation />
-
-      <Toast />
-    </>
+    </NotifierWrapper>
   );
 };
 

@@ -4,8 +4,6 @@ import { SafeAreaView, ScrollView, Image, View } from 'react-native';
 import type { NavigationProp } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
 
-import Toast from 'react-native-toast-message';
-
 import type { RootParamsType } from 'src/types';
 
 import CustomButton from 'src/components/CustomButton';
@@ -15,6 +13,9 @@ import CustomText from 'src/components/CustomText';
 import pokemonLogoImage from 'src/assets/pokemon-logo.png';
 
 import useCurrentUser from 'src/hooks/useCurrentUser';
+
+import errorsHandler from 'src/utils/errorsHandler';
+
 import LogInStyles from './LogIn.styles';
 
 const LogIn = () => {
@@ -33,12 +34,12 @@ const LogIn = () => {
 
   const onSubmit = async () => {
     try {
-      if (!logInState.username.trim() || !logInState.password.trim()) {
-        return Toast.show({
-          type: 'error',
-          text1: 'Not all registration fields are filled!',
-        });
-      }
+      const isWithoutErrors = await errorsHandler({
+        username: logInState.username,
+        password: logInState.password,
+      });
+
+      if (!isWithoutErrors) return;
 
       await logIn();
 
@@ -65,6 +66,7 @@ const LogIn = () => {
             value={logInState.username}
             onChangeText={(value) => onChangeText('username', value)}
           />
+
           <CustomInput
             placeholder="Password"
             secureTextEntry
@@ -72,12 +74,14 @@ const LogIn = () => {
             onChangeText={(value) => onChangeText('password', value)}
           />
         </View>
+
         <View style={LogInStyles.buttonsWrapper}>
           <CustomButton title="Submit" onPress={onSubmit} />
           <View>
             <CustomText style={LogInStyles.title}>
               Not registered yet?
             </CustomText>
+
             <CustomButton
               title="Sign Up"
               onPress={() => navigation.navigate('SignUp')}

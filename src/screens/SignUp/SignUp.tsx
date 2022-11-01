@@ -4,8 +4,6 @@ import { SafeAreaView, ScrollView, Image, View } from 'react-native';
 import type { NavigationProp } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
 
-import Toast from 'react-native-toast-message';
-
 import type { RootParamsType } from 'src/types';
 
 import CustomButton from 'src/components/CustomButton';
@@ -15,6 +13,8 @@ import CustomText from 'src/components/CustomText';
 import pokemonLogoImage from 'src/assets/pokemon-logo.png';
 
 import useCurrentUser from 'src/hooks/useCurrentUser';
+
+import errorsHandler from 'src/utils/errorsHandler';
 
 import SignUpStyles from './SignUp.styles';
 
@@ -35,23 +35,13 @@ const SignUp = () => {
 
   const onSubmit = async () => {
     try {
-      if (
-        !signUpState.username.trim() ||
-        !signUpState.password.trim() ||
-        !signUpState.repeatedPassword.trim()
-      ) {
-        return Toast.show({
-          type: 'error',
-          text1: 'Not all registration fields are filled!',
-        });
-      }
+      const isWithoutErrors = await errorsHandler({
+        username: signUpState.username,
+        password: signUpState.password,
+        repeatedPassword: signUpState.repeatedPassword,
+      });
 
-      if (signUpState.password !== signUpState.repeatedPassword) {
-        return Toast.show({
-          type: 'error',
-          text1: 'Passwords do not match!',
-        });
-      }
+      if (!isWithoutErrors) return;
 
       await signUp();
 

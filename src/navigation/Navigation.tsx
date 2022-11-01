@@ -1,4 +1,11 @@
 import { useEffect, useState } from 'react';
+import { Alert } from 'react-native';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { NavigationContainer } from '@react-navigation/native';
+
+import messaging from '@react-native-firebase/messaging';
+import RNBootSplash from 'react-native-bootsplash';
 
 import useCurrentUser from 'src/hooks/useCurrentUser';
 import { useAppSelector } from 'src/store/hooks/hooks';
@@ -31,12 +38,30 @@ const Navigation = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
 
+  useEffect(() => {
+    AsyncStorage.getItem('user').finally(() => {
+      return RNBootSplash.hide({ fade: true });
+    });
+
+    const unsubscribe = messaging().onMessage(async (remoteMessage) => {
+      const defaultTitle = 'New message';
+      const messageTitle = remoteMessage.notification?.title;
+      Alert.alert(messageTitle || defaultTitle, remoteMessage.notification?.body);
+    });
+
+    return unsubscribe;
+  }, []);
+
   return (
-    isSignedIn ? (
-      <TabNavigation />
-    ) : (
-      <LogInSignUpNavigation />
-    )
+    <NavigationContainer onReady={RNBootSplash.hide}>
+      {
+        isSignedIn ? (
+          <TabNavigation />
+        ) : (
+          <LogInSignUpNavigation />
+        )
+      }
+    </NavigationContainer>
   );
 };
 

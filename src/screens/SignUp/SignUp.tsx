@@ -14,9 +14,7 @@ import CustomText from 'src/components/CustomText';
 
 import pokemonLogoImage from 'src/assets/pokemon-logo.png';
 
-import { useAppDispatch } from 'src/store/hooks';
-import { userApi } from 'src/api/userApi';
-import { setUser } from 'src/store/user';
+import useCurrentUser from 'src/hooks/useCurrentUser';
 
 import SignUpStyles from './SignUp.styles';
 
@@ -27,9 +25,9 @@ const SignUp = () => {
     repeatedPassword: '',
   });
 
-  const navigation = useNavigation<NavigationProp<RootParamsType>>();
+  const { signUp } = useCurrentUser(signUpState);
 
-  const dispatch = useAppDispatch();
+  const navigation = useNavigation<NavigationProp<RootParamsType>>();
 
   const onChangeText = (key: keyof typeof signUpState, value: string) => {
     setSignUpState({ ...signUpState, [key]: value });
@@ -55,8 +53,7 @@ const SignUp = () => {
         });
       }
 
-      const res = await userApi.signUp(signUpState);
-      dispatch(setUser(res));
+      await signUp();
 
       setSignUpState({
         username: '',

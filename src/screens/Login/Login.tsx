@@ -14,10 +14,7 @@ import CustomText from 'src/components/CustomText';
 
 import pokemonLogoImage from 'src/assets/pokemon-logo.png';
 
-import { useAppDispatch } from 'src/store/hooks';
-import { userApi } from 'src/api/userApi';
-import { setUser } from 'src/store/user';
-
+import useCurrentUser from 'src/hooks/useCurrentUser';
 import LogInStyles from './LogIn.styles';
 
 const LogIn = () => {
@@ -26,9 +23,9 @@ const LogIn = () => {
     password: '',
   });
 
-  const navigation = useNavigation<NavigationProp<RootParamsType>>();
+  const { logIn } = useCurrentUser(logInState);
 
-  const dispatch = useAppDispatch();
+  const navigation = useNavigation<NavigationProp<RootParamsType>>();
 
   const onChangeText = (key: string, value: string) => {
     setLogInState({ ...logInState, [key]: value });
@@ -43,8 +40,7 @@ const LogIn = () => {
         });
       }
 
-      const res = await userApi.logIn(logInState);
-      dispatch(setUser(res));
+      await logIn();
 
       setLogInState({
         username: '',

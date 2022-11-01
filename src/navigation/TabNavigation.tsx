@@ -10,11 +10,9 @@ import type { BottomTabParamListType } from 'src/types';
 import HomeScreen from 'src/screens/HomeScreen/HomeScreen';
 import UserProfile from 'src/screens/UserProfile/UserProfile';
 
-import { userApi } from 'src/api/userApi';
-import { useAppDispatch, useAppSelector } from 'src/store/hooks';
+import { useAppSelector } from 'src/store/hooks';
 
-import { setUser } from 'src/store/user';
-
+import useCurrentUser from 'src/hooks/useCurrentUser';
 import PokemonsListNavigation from './PokemonsListNavigation';
 import LogInSignUpNavigation from './LogInSignUpNavigation';
 
@@ -24,7 +22,7 @@ const TabNavigation = () => {
   const [isSignedIn, setIsSignedIn] = useState(false);
   const { token } = useAppSelector((state) => state.user);
 
-  const dispatch = useAppDispatch();
+  const { checkUser } = useCurrentUser(null);
 
   useEffect(() => {
     (async () => {
@@ -34,8 +32,7 @@ const TabNavigation = () => {
       }
 
       try {
-        const res = await userApi.checkUser();
-        dispatch(setUser(res));
+        await checkUser();
       } catch (error) {
         // eslint-disable-next-line no-console
         console.log(error);
@@ -43,7 +40,7 @@ const TabNavigation = () => {
         setIsSignedIn(true);
       }
     })();
-  }, [dispatch, token]);
+  }, [checkUser, token]);
 
   if (!isSignedIn) {
     return <LogInSignUpNavigation />;

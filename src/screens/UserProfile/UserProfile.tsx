@@ -3,25 +3,22 @@ import { SafeAreaView, View, Image } from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { useAppDispatch, useAppSelector } from 'src/store/hooks';
-import { setUser } from 'src/store/user';
-
 import CustomText from 'src/components/CustomText';
 import CustomButton from 'src/components/CustomButton';
 
 import emptyAvatar from 'src/assets/emptyAvatar.png';
 
+import useCurrentUser from 'src/hooks/useCurrentUser';
+
 import UserProfilesStyles from './UserProfile.styles';
 
 const UserProfile = () => {
-  const user = useAppSelector((state) => state.user.user);
-
-  const dispatch = useAppDispatch();
+  const { user, clearUserData } = useCurrentUser(null);
 
   const onPressQuit = async () => {
     try {
-      await AsyncStorage.clear();
-      dispatch(setUser({ user: null, token: null }));
+      await AsyncStorage.setItem('user', '');
+      await clearUserData();
     } catch (error) {
       // eslint-disable-next-line no-console
       console.log(error);

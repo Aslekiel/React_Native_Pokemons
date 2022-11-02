@@ -13,7 +13,7 @@ const AuthNavigation = () => {
     <Stack.Navigator>
       <Stack.Group>
         <Stack.Screen
-          name="Login"
+          name="LogIn"
           component={LogIn}
           options={{ headerShown: false }}
         />

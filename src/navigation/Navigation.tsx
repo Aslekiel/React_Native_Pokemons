@@ -15,7 +15,7 @@ import AuthNavigation from './AuthNavigation';
 const Navigation = () => {
   const [isSignedIn, setIsSignedIn] = useState(false);
 
-  const { checkUser } = useCurrentUser(null);
+  const { user, checkUser } = useCurrentUser(null);
 
   useEffect(() => {
     const init = async () => {
@@ -53,7 +53,7 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       {
-        isSignedIn ? (
+        isSignedIn || user ? (
           <TabNavigation />
         ) : (
           <AuthNavigation />

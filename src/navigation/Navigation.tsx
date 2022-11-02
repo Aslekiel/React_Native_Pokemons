@@ -1,13 +1,16 @@
 import { useEffect, useState } from 'react';
 import { Alert } from 'react-native';
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NavigationContainer } from '@react-navigation/native';
 
 import messaging from '@react-native-firebase/messaging';
 import RNBootSplash from 'react-native-bootsplash';
 
 import useCurrentUser from 'src/hooks/useCurrentUser';
+
+import { getSingleUserFromStorage } from 'src/utils/storage';
+
+import type { SingleUserType } from 'src/types';
 
 import TabNavigation from './TabNavigation';
 import AuthNavigation from './AuthNavigation';
@@ -19,9 +22,9 @@ const Navigation = () => {
 
   useEffect(() => {
     const init = async () => {
-      const userFromStorage = await AsyncStorage.getItem('user') || '';
+      const userFromStorage: SingleUserType = await getSingleUserFromStorage();
 
-      if (!JSON.parse(userFromStorage).token) {
+      if (userFromStorage.token) {
         setIsSignedIn(false);
         return;
       }

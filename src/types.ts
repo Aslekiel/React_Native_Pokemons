@@ -119,5 +119,5 @@ export type SingleUserType = {
   id?: string;
   fullname?: string;
   username?: string;
-  avatar?: string;
+  token?: string;
 };

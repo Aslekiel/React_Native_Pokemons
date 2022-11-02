@@ -1,8 +1,7 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
 import type { SingleUserType } from 'src/types';
 
 import { notifierError, notifierSuccess } from './notifier';
+import { getUsersFromStorage } from './storage';
 
 type UserDataType = {
     username: string;
@@ -11,8 +10,7 @@ type UserDataType = {
   };
 
 const errorsHandler = async (props: UserDataType) => {
-  const usersFromDB = await AsyncStorage.getItem('users');
-  const users = usersFromDB && JSON.parse(usersFromDB);
+  const users = await getUsersFromStorage();
 
   const propsLength = Object.keys(props).length;
 

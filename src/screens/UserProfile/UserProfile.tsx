@@ -1,14 +1,14 @@
 import React from 'react';
 import { SafeAreaView, View, Image } from 'react-native';
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
 import CustomText from 'src/components/CustomText';
 import CustomButton from 'src/components/CustomButton';
 
 import useCurrentUser from 'src/hooks/useCurrentUser';
 
 import images from 'src/constants/images';
+
+import { clearUserDataFromStorage } from 'src/utils/storage';
 
 import UserProfilesStyles from './UserProfile.styles';
 
@@ -17,7 +17,7 @@ const UserProfile = () => {
 
   const onPressQuit = async () => {
     try {
-      await AsyncStorage.setItem('user', '');
+      await clearUserDataFromStorage('');
       await clearUserData();
     } catch (error) {
       // eslint-disable-next-line no-console

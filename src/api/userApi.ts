@@ -1,9 +1,13 @@
 /* eslint-disable no-async-promise-executor */
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { nanoid } from '@reduxjs/toolkit';
 import type { SingleUserType, UserType } from 'src/types';
 
-import getUsersFromStorage from 'src/utils/getUsersFromStorege';
+import {
+  getSingleUserFromStorage,
+  getUsersFromStorage,
+  saveNewUserToUsersData,
+  saveUserToStorage,
+} from 'src/utils/storage';
 
 type UserDataType = {
   username: string;
@@ -12,9 +16,10 @@ type UserDataType = {
 
 const logIn = async (userData: UserDataType) => {
   const user: UserType = await new Promise(async (res) => {
-    const users = await AsyncStorage.getItem('users');
+    const users = await getUsersFromStorage();
+
     const currentUser = users &&
-    JSON.parse(users).filter((user: SingleUserType) => user.username === userData.username);
+    users.filter((user: SingleUserType) => user.username === userData.username);
 
     const findedUser = currentUser
       ? {
@@ -43,22 +48,22 @@ const signUp = async (userData: UserDataType) => {
       token: nanoid(),
     };
 
-    await AsyncStorage.setItem('user', JSON.stringify(userForDB));
+    await saveUserToStorage(userForDB);
 
     const usersFromDB = await getUsersFromStorage();
 
     if (!usersFromDB) {
-      const newUsers = [];
-      newUsers.push(userForDB);
-      await AsyncStorage.setItem('users', JSON.stringify(newUsers));
+      const newUser = [];
+      newUser.push(userForDB);
+      await saveNewUserToUsersData(newUser);
     } else {
       usersFromDB.push(userForDB);
-      await AsyncStorage.setItem('users', JSON.stringify(usersFromDB));
+      await saveNewUserToUsersData(usersFromDB);
     }
 
-    const users = await AsyncStorage.getItem('users');
+    const users = await getUsersFromStorage();
     const currentUser = users &&
-    JSON.parse(users).filter((user: SingleUserType) => user.username === userData.username);
+    users.filter((user: SingleUserType) => user.username === userData.username);
 
     const newUser: SingleUserType = {
       id: currentUser[0].id,
@@ -72,14 +77,14 @@ const signUp = async (userData: UserDataType) => {
 
 const checkUser = async () => {
   const user: UserType = await new Promise(async (res) => {
-    const currentUser = await AsyncStorage.getItem('user');
+    const currentUser = await getSingleUserFromStorage();
 
     if (currentUser) {
       const userData = {
-        id: JSON.parse(currentUser).id,
-        username: JSON.parse(currentUser).username,
+        id: currentUser.id,
+        username: currentUser.username,
       };
-      setTimeout(() => res({ user: userData, token: JSON.parse(currentUser).token }), 500);
+      setTimeout(() => res({ user: userData, token: currentUser.token }), 500);
     }
   });
 

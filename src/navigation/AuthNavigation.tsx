@@ -1,13 +1,14 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import type { StackParamsType } from '../types';
 
-import SignUp from '../screens/SignUp/SignUp';
-import LogIn from '../screens/LogIn/LogIn';
+import SignUp from 'src/screens/SignUp/SignUp';
+import LogIn from 'src/screens/LogIn/LogIn';
+
+import type { StackParamsType } from '../types';
 
 const Stack = createNativeStackNavigator<StackParamsType>();
 
-const LogInSignUpNavigation = () => {
+const AuthNavigation = () => {
   return (
     <Stack.Navigator>
       <Stack.Group>
@@ -26,4 +27,4 @@ const LogInSignUpNavigation = () => {
   );
 };
 
-export default LogInSignUpNavigation;
+export default AuthNavigation;

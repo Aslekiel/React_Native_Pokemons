@@ -9,8 +9,8 @@ import RNBootSplash from 'react-native-bootsplash';
 
 import useCurrentUser from 'src/hooks/useCurrentUser';
 
-import LogInSignUpNavigation from './LogInSignUpNavigation';
 import TabNavigation from './TabNavigation';
+import AuthNavigation from './AuthNavigation';
 
 const Navigation = () => {
   const [isSignedIn, setIsSignedIn] = useState(false);
@@ -56,7 +56,7 @@ const Navigation = () => {
         isSignedIn ? (
           <TabNavigation />
         ) : (
-          <LogInSignUpNavigation />
+          <AuthNavigation />
         )
       }
     </NavigationContainer>

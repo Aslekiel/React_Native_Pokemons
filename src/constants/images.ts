@@ -6,7 +6,7 @@ import emptyAvatar from 'src/assets/emptyAvatar.png';
 import pokemonLogoImage from 'src/assets/pokemon-logo.png';
 import pokeballImage from 'src/assets/pokeball.png';
 
-const images = {
+export default {
   homeIcon,
   profileIcon,
   pokeballIcon,
@@ -14,5 +14,3 @@ const images = {
   pokemonLogoImage,
   pokeballImage,
 };
-
-export default images;

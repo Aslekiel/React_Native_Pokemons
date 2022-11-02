@@ -3,3 +3,9 @@ build
 lock_node_version.js
 craco.config.js
 metro.config.js
+babel.config.js
+react-native.config.js
+index.js
+.eslintrc.js
+App-test.tsx
+customTransformer.ts

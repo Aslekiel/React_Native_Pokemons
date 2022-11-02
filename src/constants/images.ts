@@ -1,16 +1,10 @@
-import homeIcon from 'src/assets/home.svg';
-import profileIcon from 'src/assets/pokemon_trainer.svg';
-import pokeballIcon from 'src/assets/pokeball_icon.svg';
-
-import emptyAvatar from 'src/assets/emptyAvatar.png';
-import pokemonLogoImage from 'src/assets/pokemon-logo.png';
-import pokeballImage from 'src/assets/pokeball.png';
-
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable global-require */
 export default {
-  homeIcon,
-  profileIcon,
-  pokeballIcon,
-  emptyAvatar,
-  pokemonLogoImage,
-  pokeballImage,
+  homeIcon: require('src/assets/home.svg').default,
+  profileIcon: require('src/assets/pokemon_trainer.svg').default,
+  pokeballIcon: require('src/assets/pokeball_icon.svg').default,
+  emptyAvatar: require('src/assets/emptyAvatar.png'),
+  pokemonLogoImage: require('src/assets/pokemon-logo.png'),
+  pokeballImage: require('src/assets/pokeball.png'),
 };

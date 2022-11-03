@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Alert } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import messaging from '@react-native-firebase/messaging';
 import RNBootSplash from 'react-native-bootsplash';
@@ -10,10 +11,12 @@ import useCurrentUser from 'src/hooks/useCurrentUser';
 
 import { getSingleUserFromStorage } from 'src/utils/storage';
 
-import type { SingleUserType } from 'src/types';
+import type { SingleUserType, StackNavigationType } from 'src/types';
 
 import TabNavigation from './TabNavigation';
 import AuthNavigation from './AuthNavigation';
+
+const Stack = createNativeStackNavigator<StackNavigationType>();
 
 const Navigation = () => {
   const [isSignedIn, setIsSignedIn] = useState(false);
@@ -40,7 +43,7 @@ const Navigation = () => {
     };
 
     init().finally(() => {
-      return RNBootSplash.hide({ fade: true });
+      RNBootSplash.hide({ fade: true });
     });
 
     const unsubscribe = messaging().onMessage(async (remoteMessage) => {
@@ -55,13 +58,22 @@ const Navigation = () => {
 
   return (
     <NavigationContainer>
-      {
-        isSignedIn || user ? (
-          <TabNavigation />
+      <Stack.Navigator>
+        {isSignedIn || user ? (
+        <Stack.Screen
+        name="TabNavigation"
+        component={TabNavigation}
+        options={{ headerShown: false }}
+        />
         ) : (
-          <AuthNavigation />
+          <Stack.Screen
+          name="AuthNavigation"
+          component={AuthNavigation}
+          options={{ headerShown: false }}
+          />
         )
       }
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };

@@ -95,6 +95,11 @@ export type BottomTabParamListType = {
   Login: undefined;
 };
 
+export type StackNavigationType = {
+  TabNavigation: undefined;
+  AuthNavigation: undefined;
+};
+
 export type StackParamsType = {
   PokemonsList: undefined;
   SinglePokemonPage: undefined;

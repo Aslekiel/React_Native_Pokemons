@@ -9,9 +9,7 @@ import RNBootSplash from 'react-native-bootsplash';
 
 import useCurrentUser from 'src/hooks/useCurrentUser';
 
-import { getSingleUserFromStorage } from 'src/utils/storage';
-
-import type { SingleUserType, StackNavigationType } from 'src/types';
+import type { StackNavigationType } from 'src/types';
 
 import TabNavigation from './TabNavigation';
 import AuthNavigation from './AuthNavigation';
@@ -20,14 +18,16 @@ const Stack = createNativeStackNavigator<StackNavigationType>();
 
 const Navigation = () => {
   const [isSignedIn, setIsSignedIn] = useState(false);
-
-  const { user, checkUser } = useCurrentUser(null);
+  const [token, setToken] = useState('');
+  const { checkUser, getTokenFromStorage } = useCurrentUser(null);
 
   useEffect(() => {
     const init = async () => {
-      const userFromStorage: SingleUserType = await getSingleUserFromStorage();
+      const userToken = await getTokenFromStorage();
 
-      if (userFromStorage.token) {
+      setToken(userToken);
+
+      if (!userToken) {
         setIsSignedIn(false);
         return;
       }
@@ -59,7 +59,7 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {isSignedIn || user ? (
+        {isSignedIn || token ? (
         <Stack.Screen
         name="TabNavigation"
         component={TabNavigation}

@@ -2,6 +2,7 @@ import { userApi } from 'src/api/userApi';
 
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import { setUser } from 'src/store/user';
+import { getSingleUserFromStorage } from 'src/utils/storage';
 
 type UserDataType = {
     username: string;
@@ -37,7 +38,12 @@ const useCurrentUser = (userData: UserDataType | null) => {
     return dispatch(setUser({ user: null, token: null }));
   };
 
-  return { user, logIn, signUp, checkUser, clearUserData };
+  const getTokenFromStorage = async () => {
+    const res = await getSingleUserFromStorage();
+    return res.token;
+  };
+
+  return { user, logIn, signUp, checkUser, clearUserData, getTokenFromStorage };
 };
 
 export default useCurrentUser;

@@ -1,13 +1,5 @@
 export type PokemonsApiType = {
   pokemons: SinglePokemonType[];
-  pagination: PaginationType;
-};
-
-export type PaginationType = {
-  count: number | null;
-  next: string | null;
-  previous: string | null;
-  results: PaginationResultsType[];
 };
 
 export type PaginationResultsType = {

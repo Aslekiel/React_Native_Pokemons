@@ -10,7 +10,8 @@ import {
 import type { SinglePokemonType } from 'src/types';
 
 import PokemonCard from 'src/components/PokemonCard';
-import pokemonApi from 'src/api/pokemonApi';
+
+import usePokemons from 'src/hooks/usePokemons';
 
 import PokemonsListStyles from './PokemonList.styles';
 
@@ -21,24 +22,19 @@ const renderItem: ListRenderItem<SinglePokemonType> = ({ item }) => (
 );
 
 const PokemonsList = () => {
-  const [pokemonsList, setPokemonList] = useState<SinglePokemonType[]>([]);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(2);
   const [isFirstLoading, setIsFirstLoading] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+
+  const { pokemonsList, getPokemonsArray } = usePokemons();
 
   useEffect(() => {
     (async () => {
       try {
         setIsLoading(true);
-        for (
-          let i = limit * (currentPage - 1) + 1;
-          i < limit * (currentPage - 1) + limit + 1;
-          i++
-        ) {
-          // eslint-disable-next-line no-await-in-loop
-          const res = await pokemonApi.getPokemonData(i);
-          setPokemonList((prev) => [...prev, res.data]);
-        }
+
+        await getPokemonsArray(limit, currentPage);
+
         setIsLoading(false);
         setIsFirstLoading(false);
       } catch (error) {
@@ -46,6 +42,7 @@ const PokemonsList = () => {
         console.log(error);
       }
     })();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage]);
 
   const loadMorePokemons = () => {

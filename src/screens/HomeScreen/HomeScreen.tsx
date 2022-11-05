@@ -12,7 +12,9 @@ import HomeScreenStyles from './HomeScreen.styles';
 
 const HomeScreen = () => {
   const [pokemonId, setPokemonId] = useState<number>();
-  const { pokemonData, getPokemon } = usePokemons();
+
+  const { pokemonData, getPokemon, getPokemonsArray } = usePokemons();
+
   useEffect(() => {
     (async () => {
       try {
@@ -26,6 +28,18 @@ const HomeScreen = () => {
     })();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pokemonId]);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        await getPokemonsArray(8, 1);
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.log(error);
+      }
+    })();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const onPressRandom = () => {
     setPokemonId(Math.floor(Math.random() * 905) + 1);

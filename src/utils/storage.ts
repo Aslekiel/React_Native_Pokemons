@@ -68,3 +68,12 @@ export const getTokenFromStorage = async () => {
     console.log(err);
   }
 };
+
+export const removeTokenFromStorage = async (key: string) => {
+  try {
+    await AsyncStorage.removeItem(key);
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.log(err);
+  }
+};

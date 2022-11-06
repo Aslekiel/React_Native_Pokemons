@@ -12,6 +12,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		3E90732944BAA7CE176EA33F /* Pods_Pokemons.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68FE6CBC2B3E6672BE69749E /* Pods_Pokemons.framework */; };
 		58FA3903AB87C9C17DEF742B /* Pods_Pokemons_PokemonsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 454F928409F828DCF5151577 /* Pods_Pokemons_PokemonsTests.framework */; };
+		7A0E13CA2917E28D00E53034 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7A0E13C92917E28D00E53034 /* GoogleService-Info.plist */; };
 		7A1711EC2909420000B699E9 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7A1711DC2909420000B699E9 /* Ionicons.ttf */; };
 		7A1711ED2909420000B699E9 /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7A1711DD2909420000B699E9 /* FontAwesome5_Regular.ttf */; };
 		7A1711EE2909420000B699E9 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7A1711DE2909420000B699E9 /* FontAwesome.ttf */; };
@@ -37,7 +38,6 @@
 		7A324C24290A6E3F00D0E5A9 /* FuzzyBubbles-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7A324C1D290A6E3F00D0E5A9 /* FuzzyBubbles-Bold.ttf */; };
 		7A324C25290A6E3F00D0E5A9 /* PTSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7A324C1E290A6E3F00D0E5A9 /* PTSans-Italic.ttf */; };
 		7A805319290BF083001F6271 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
-		7AB058BD290BADC500D641F0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7AB058BC290BADC500D641F0 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +65,7 @@
 		5709B34CF0A7D63546082F79 /* Pods-Pokemons.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pokemons.release.xcconfig"; path = "Target Support Files/Pods-Pokemons/Pods-Pokemons.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-Pokemons-PokemonsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pokemons-PokemonsTests.debug.xcconfig"; path = "Target Support Files/Pods-Pokemons-PokemonsTests/Pods-Pokemons-PokemonsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		68FE6CBC2B3E6672BE69749E /* Pods_Pokemons.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pokemons.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A0E13C92917E28D00E53034 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7A1711DC2909420000B699E9 /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Ionicons.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		7A1711DD2909420000B699E9 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome5_Regular.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
 		7A1711DE2909420000B699E9 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
@@ -90,7 +91,6 @@
 		7A324C1D290A6E3F00D0E5A9 /* FuzzyBubbles-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FuzzyBubbles-Bold.ttf"; sourceTree = "<group>"; };
 		7A324C1E290A6E3F00D0E5A9 /* PTSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PTSans-Italic.ttf"; sourceTree = "<group>"; };
 		7A80531A290C11EC001F6271 /* Pokemons.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Pokemons.entitlements; path = Pokemons/Pokemons.entitlements; sourceTree = "<group>"; };
-		7AB058BC290BADC500D641F0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Pokemons/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-Pokemons-PokemonsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pokemons-PokemonsTests.release.xcconfig"; path = "Target Support Files/Pods-Pokemons-PokemonsTests/Pods-Pokemons-PokemonsTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -141,7 +141,7 @@
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				7A17120A290963D700B699E9 /* BootSplash.storyboard */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
-				7AB058BC290BADC500D641F0 /* GoogleService-Info.plist */,
+				7A0E13C92917E28D00E53034 /* GoogleService-Info.plist */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
@@ -329,7 +329,6 @@
 			files = (
 				7A1711F52909420100B699E9 /* Octicons.ttf in Resources */,
 				7A1711ED2909420000B699E9 /* FontAwesome5_Regular.ttf in Resources */,
-				7AB058BD290BADC500D641F0 /* GoogleService-Info.plist in Resources */,
 				7A805319290BF083001F6271 /* Images.xcassets in Resources */,
 				7A1711FA2909420100B699E9 /* Feather.ttf in Resources */,
 				7A17120B290963D700B699E9 /* BootSplash.storyboard in Resources */,
@@ -341,6 +340,7 @@
 				7A1711F62909420100B699E9 /* SimpleLineIcons.ttf in Resources */,
 				7A324C23290A6E3F00D0E5A9 /* PressStart2P-Regular.ttf in Resources */,
 				7A324C21290A6E3F00D0E5A9 /* FuzzyBubbles-Regular.ttf in Resources */,
+				7A0E13CA2917E28D00E53034 /* GoogleService-Info.plist in Resources */,
 				7A324C24290A6E3F00D0E5A9 /* FuzzyBubbles-Bold.ttf in Resources */,
 				7A1711EF2909420000B699E9 /* FontAwesome5_Solid.ttf in Resources */,
 				7A1711EC2909420000B699E9 /* Ionicons.ttf in Resources */,

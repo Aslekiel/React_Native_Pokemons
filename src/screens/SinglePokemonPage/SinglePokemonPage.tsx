@@ -28,7 +28,7 @@ type ParamListType = {
 };
 
 const SinglePokemonPage = () => {
-  const { pokemonData, getPokemon } = usePokemons();
+  const { pokemonData, getPokemonFromStore } = usePokemons();
 
   const route = useRoute<RouteProp<ParamListType, 'SinglePokemonPage'>>();
   const { id } = route.params;
@@ -44,14 +44,7 @@ const SinglePokemonPage = () => {
   }, [pokemonData]);
 
   useEffect(() => {
-    (async () => {
-      try {
-        await getPokemon(Number(id));
-      } catch (error) {
-        // eslint-disable-next-line no-console
-        console.log(error);
-      }
-    })();
+    getPokemonFromStore(id);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 

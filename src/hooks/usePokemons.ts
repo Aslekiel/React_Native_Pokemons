@@ -59,7 +59,18 @@ const usePokemons = () => {
     setPokemonList([...pokemonsFromStore, ...pokemonsDataArray]);
   };
 
-  return { pokemonData, pokemonsList, getPokemon, getPokemonsArray };
+  const getPokemonFromStore = (id: string) => {
+    const pokemonFromStore = pokemonsFromStore.find((pokemon) => pokemon.id === id);
+    setPokemonData(pokemonFromStore);
+  };
+
+  return {
+    pokemonData,
+    pokemonsList,
+    getPokemon,
+    getPokemonsArray,
+    getPokemonFromStore,
+  };
 };
 
 export default usePokemons;

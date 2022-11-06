@@ -8,7 +8,7 @@ import useCurrentUser from 'src/hooks/useCurrentUser';
 
 import images from 'src/constants/images';
 
-import { clearUserDataFromStorage } from 'src/utils/storage';
+import { saveTokenToStorage } from 'src/utils/storage';
 
 import UserProfilesStyles from './UserProfile.styles';
 
@@ -17,8 +17,8 @@ const UserProfile = () => {
 
   const onPressQuit = async () => {
     try {
-      await clearUserDataFromStorage('');
       await clearUserData();
+      await saveTokenToStorage('');
     } catch (error) {
       // eslint-disable-next-line no-console
       console.log(error);

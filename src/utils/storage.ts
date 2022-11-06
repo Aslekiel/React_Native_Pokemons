@@ -31,6 +31,15 @@ export const saveUserToStorage = async (userData: SingleUserType) => {
   }
 };
 
+export const saveTokenToStorage = async (token: string) => {
+  try {
+    await AsyncStorage.setItem('token', token);
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.log(err);
+  }
+};
+
 export const saveNewUserToUsersData = async (usersData: SingleUserType[]) => {
   try {
     await AsyncStorage.setItem('users', JSON.stringify(usersData));
@@ -43,6 +52,17 @@ export const saveNewUserToUsersData = async (usersData: SingleUserType[]) => {
 export const clearUserDataFromStorage = async (clearData: string) => {
   try {
     await AsyncStorage.setItem('user', clearData);
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.log(err);
+  }
+};
+
+export const getTokenFromStorage = async () => {
+  try {
+    const jsonValue = await AsyncStorage.getItem('token');
+
+    return jsonValue !== null ? jsonValue : null;
   } catch (err) {
     // eslint-disable-next-line no-console
     console.log(err);

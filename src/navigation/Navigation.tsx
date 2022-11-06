@@ -11,34 +11,32 @@ import useCurrentUser from 'src/hooks/useCurrentUser';
 
 import type { StackNavigationType } from 'src/types';
 
+import { getTokenFromStorage } from 'src/utils/storage';
+
 import TabNavigation from './TabNavigation';
 import AuthNavigation from './AuthNavigation';
 
 const Stack = createNativeStackNavigator<StackNavigationType>();
 
 const Navigation = () => {
-  const [isSignedIn, setIsSignedIn] = useState(false);
   const [token, setToken] = useState('');
-  const { checkUser, getTokenFromStorage } = useCurrentUser(null);
+  const { user, checkUser } = useCurrentUser(null);
 
   useEffect(() => {
     const init = async () => {
-      const userToken = await getTokenFromStorage();
-
-      setToken(userToken);
-
-      if (!userToken) {
-        setIsSignedIn(false);
-        return;
-      }
-
       try {
+        const userToken = await getTokenFromStorage();
+
+        if (!userToken) {
+          return;
+        }
+
+        setToken(userToken);
+
         await checkUser();
       } catch (error) {
         // eslint-disable-next-line no-console
         console.log(error);
-      } finally {
-        setIsSignedIn(true);
       }
     };
 
@@ -59,7 +57,7 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {isSignedIn || token ? (
+        {token || user ? (
         <Stack.Screen
         name="TabNavigation"
         component={TabNavigation}

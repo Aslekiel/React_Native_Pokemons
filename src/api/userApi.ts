@@ -6,6 +6,7 @@ import {
   getSingleUserFromStorage,
   getUsersFromStorage,
   saveNewUserToUsersData,
+  saveTokenToStorage,
   saveUserToStorage,
 } from 'src/utils/storage';
 
@@ -29,6 +30,10 @@ const logIn = async (userData: UserDataType) => {
       }
       : null;
 
+    if (findedUser) {
+      await saveTokenToStorage(currentUser[0].token);
+    }
+
     const registeredUser: SingleUserType = {
       id: findedUser?.id,
       username: userData.username,
@@ -49,6 +54,7 @@ const signUp = async (userData: UserDataType) => {
     };
 
     await saveUserToStorage(userForDB);
+    await saveTokenToStorage(userForDB.token);
 
     const usersFromDB = await getUsersFromStorage();
 
